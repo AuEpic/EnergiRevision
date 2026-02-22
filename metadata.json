@@ -1,0 +1,5 @@
+{
+  "name": "OpenClaw Tax Recovery",
+  "description": "Internal dashboard for Svensk Skatteåtervinning AB to manage tax recovery leads, AI agents, and API integrations.",
+  "requestFramePermissions": []
+}
