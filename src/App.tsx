@@ -422,6 +422,71 @@ function AgentsView() {
   );
 }
 
+const CHECKLIST_DATA = [
+  {
+    title: "1. Finansiella Indikatorer & Grunddata",
+    icon: Search,
+    items: [
+      { label: "SNI-kod matchning", desc: "Fokusera på tech/programmering (62010, 62020) för FoU-avdrag, eller tillverkning/industri (10–33) för energiskatt." },
+      { label: "Löneintensitetsregeln (15 %)", desc: "Flagga bolag i tech-sektorn vars personalkostnader överstiger 15 % av nettoomsättningen. Detta är en stark indikator på dolda FoU-möjligheter." },
+      { label: "Personalkostnadströskel", desc: "Prioritera bolag med totala personalkostnader över 5 MSEK." },
+      { label: "Ruta 475-kontroll", desc: "Verifiera via Skatteverkets Partner-API om bolaget rapporterar 0 kr i FoU-avdrag trots de finansiella indikatorerna ovan." },
+      { label: "Not: Uppskjuten skattefordran", desc: "Leta efter oredovisade skattetillgångar som kan tyda på historiska fel." },
+      { label: "Kassaflödesanalys - Betald skatt", desc: "Kontrollera att bolaget faktiskt är i en skattebetalande position (krävs för återvinning)." },
+      { label: "Not: Ersättning till revisorer", desc: "Om ingen specialiserad skatterådgivning nämns ökar sannolikheten för missade avdrag (+3 poäng i Lead Scoring)." },
+      { label: "Fysiskt avtryck", desc: "Bedöm bolagets fysiska anläggningar (lager, produktion, kylanläggningar) för potential inom energiskatt." }
+    ]
+  },
+  {
+    title: "2. Juridiska Spearheads (Rättspraxis & Domar)",
+    icon: ShieldAlert,
+    items: [
+      { label: "HFD 2022 ref. 38 (Energiskatt)", desc: "Hitta bolag med industriella processer som inte ses som traditionell industri (ex. bagerier, livsmedelsbutiker med chark, skidanläggningar)." },
+      { label: "HFD 2024 ref. 52 (Skattetillägg)", desc: "Identifiera företag som påförts skattetillägg trots att felet i deklarationen var \"uppenbart\" för Skatteverket att se i t.ex. räkenskapsschemat." },
+      { label: "HFD 7071-24 (Moms för BRF)", desc: "Sök efter bostadsrättsföreningar med höga kommersiella lokalhyror som kan använda omsättningsmetoden retroaktivt istället för ytmetoden." },
+      { label: "Högkullen-målet", desc: "För större koncerner som genomfört interna omstruktureringar där Skatteverket felaktigt schablonvärderat tjänster." }
+    ]
+  },
+  {
+    title: "3. Ostrukturerad Data & Digitala Signaler (Deep Web)",
+    icon: Database,
+    items: [
+      { label: "Platsannonser & LinkedIn", desc: "Analysera om bolaget rekryterar \"R&D Engineers\", \"Systemutvecklare\" eller \"Processutvecklare\". Detta bevisar pågående FoU-verksamhet som kan berättiga till retroaktiva avdrag." },
+      { label: "Företagshemsidor (Vision-AI)", desc: "Låt AI läsa förvaltningsberättelser och webbsidor efter nyckelord som \"utvecklat ny AI-plattform\" eller \"unika tekniska lösningar\"." },
+      { label: "YouTube & Presentationer", desc: "Granska webbinarier från aktiedagar där CTO:er beskriver \"teknisk osäkerhet\" och komplexa problem de löst (nyckelbevis för FoU)." },
+      { label: "Media-bevakning", desc: "Google Dorks (site:domstol.se HFD \"skatteåtervinning\" 2025) för att hitta konkurrenter som vunnit tvister, vilket kan användas som \"social proof\" i outreach." },
+      { label: "BRF-forum", desc: "Bevaka diskussioner om stora renoveringar (fasad, hiss) i föreningar med kommersiella lokaler." }
+    ]
+  },
+  {
+    title: "4. Koncern- & Internationella strukturer",
+    icon: Building2,
+    items: [
+      { label: "Utländska dotterbolag", desc: "Granska svenska koncerner (likt Addtech) med utländsk närvaro för att hitta felaktig internationell källskatt (WHT) via dubbelbeskattningsavtal." },
+      { label: "Leasingmoms", desc: "Granska bolag med stora vagnparker. Vid avslut av finansiell leasing redovisas ofta för mycket utgående moms på \"övervärdet\" vid försäljning till bilhandlare." }
+    ]
+  },
+  {
+    title: "5. Tekniska Processer (Automatisering)",
+    icon: Cpu,
+    items: [
+      { label: "Event-Driven Prospektering (Webhooks)", desc: "Sätt upp larm mot Roaring/Bolagsverket så att Agent Zero triggas sekunden en ny årsredovisning laddas upp." },
+      { label: "RAG för Rättslig Vägledning", desc: "Mata in Skatteverkets egna löpande ställningstaganden i en vektordatabas för att kunna bemöta handläggare med deras egna ord." },
+      { label: "Friktionsfri Fullmakts-onboarding", desc: "Integrera BankID-signering direkt i outreach för att omedelbart kunna köra en API-audit mot Skattekontot." }
+    ]
+  },
+  {
+    title: "6. Extra idéer för expansion",
+    icon: TrendingUp,
+    items: [
+      { label: "Växa-stöd", desc: "Flagga startups som anställt sin första person men missat ruta 062 i deklarationen (sänkt arbetsgivaravgift)." },
+      { label: "K10-optimering", desc: "Identifiera ägare i fåmansbolag som missat att räkna upp sitt sparade utdelningsutrymme korrekt retroaktivt." },
+      { label: "ESG-Audit", desc: "Sök efter stora investeringar i grön teknik (solceller, laddstolpar) där bidrag som Klimatklivet inte utnyttjats fullt ut." },
+      { label: "Kundförluster", desc: "Granska bolag med stora kundfordringar där moms inte återvunnits trots att betalning uteblivit (enligt nyare EU-rättslig praxis)." }
+    ]
+  }
+];
+
 function ChecklistView() {
   return (
     <div className="space-y-6 max-w-4xl">
@@ -431,85 +496,98 @@ function ChecklistView() {
       </header>
 
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="p-6 border-b border-slate-200 bg-slate-50">
-          <h2 className="font-semibold text-slate-900 flex items-center gap-2">
-            <Search size={18} className="text-emerald-600" />
-            Steg 1: Initial screening & Lead Scoring
-          </h2>
-        </div>
-        <div className="p-6 space-y-4">
-          <label className="flex items-start gap-3 cursor-pointer group">
-            <input type="checkbox" className="mt-1 rounded text-emerald-600 focus:ring-emerald-500" />
-            <div>
-              <div className="font-medium text-slate-900 group-hover:text-emerald-700 transition-colors">SNI-kod check</div>
-              <div className="text-sm text-slate-500">Tillhör bolaget en tech-sektor (62010, 62020) eller tillverkning (10–33)?</div>
-            </div>
-          </label>
-          <label className="flex items-start gap-3 cursor-pointer group">
-            <input type="checkbox" className="mt-1 rounded text-emerald-600 focus:ring-emerald-500" />
-            <div>
-              <div className="font-medium text-slate-900 group-hover:text-emerald-700 transition-colors">Löneintensitets-analys</div>
-              <div className="text-sm text-slate-500">Överstiger bolagets personalkostnader 15 % av nettoomsättningen? (Kritiskt för FoU-avdrag i techbolag).</div>
-            </div>
-          </label>
-          <label className="flex items-start gap-3 cursor-pointer group">
-            <input type="checkbox" className="mt-1 rounded text-emerald-600 focus:ring-emerald-500" />
-            <div>
-              <div className="font-medium text-slate-900 group-hover:text-emerald-700 transition-colors">Energiskatte-potential</div>
-              <div className="text-sm text-slate-500">Har bolaget industriella processer (ex. bageri, chark) men är inte klassat som ett renodlat industribolag?</div>
-            </div>
-          </label>
-        </div>
-
-        <div className="p-6 border-y border-slate-200 bg-slate-50">
-          <h2 className="font-semibold text-slate-900 flex items-center gap-2">
-            <FileText size={18} className="text-emerald-600" />
-            Steg 2: Djupanalys av årsredovisningen (Deep Dive)
-          </h2>
-        </div>
-        <div className="p-6 space-y-4">
-          <label className="flex items-start gap-3 cursor-pointer group">
-            <input type="checkbox" className="mt-1 rounded text-emerald-600 focus:ring-emerald-500" />
-            <div>
-              <div className="font-medium text-slate-900 group-hover:text-emerald-700 transition-colors">Not: FoU-avdrag</div>
-              <div className="text-sm text-slate-500">Rapporterar bolaget 0 kr i FoU-avdrag trots aktiverade utgifter för mjukvaruutveckling?</div>
-            </div>
-          </label>
-          <label className="flex items-start gap-3 cursor-pointer group">
-            <input type="checkbox" className="mt-1 rounded text-emerald-600 focus:ring-emerald-500" />
-            <div>
-              <div className="font-medium text-slate-900 group-hover:text-emerald-700 transition-colors">Kassaflödesanalys: Betald skatt</div>
-              <div className="text-sm text-slate-500">Är bolaget i en skattebetalande position? (Krävs för avräkning).</div>
-            </div>
-          </label>
-        </div>
-
-        <div className="p-6 border-y border-slate-200 bg-slate-50">
-          <h2 className="font-semibold text-slate-900 flex items-center gap-2">
-            <Database size={18} className="text-emerald-600" />
-            Steg 3: Verifiering via Skatteverkets API:er (kräver fullmakt)
-          </h2>
-        </div>
-        <div className="p-6 space-y-4">
-          <label className="flex items-start gap-3 cursor-pointer group">
-            <input type="checkbox" className="mt-1 rounded text-emerald-600 focus:ring-emerald-500" />
-            <div>
-              <div className="font-medium text-slate-900 group-hover:text-emerald-700 transition-colors">Kontroll av Arbetsgivardeklaration (Ruta 475)</div>
-              <div className="text-sm text-slate-500">Visa det faktiska nyttjade FoU-avdraget månad för månad under de senaste 6 åren.</div>
-            </div>
-          </label>
-          <label className="flex items-start gap-3 cursor-pointer group">
-            <input type="checkbox" className="mt-1 rounded text-emerald-600 focus:ring-emerald-500" />
-            <div>
-              <div className="font-medium text-slate-900 group-hover:text-emerald-700 transition-colors">Skattekonto-avstämning</div>
-              <div className="text-sm text-slate-500">Verifiera att inga tidigare rättelser eller utbetalningar redan har registrerats.</div>
-            </div>
-          </label>
-        </div>
+        {CHECKLIST_DATA.map((section, idx) => {
+          const Icon = section.icon;
+          return (
+            <React.Fragment key={idx}>
+              <div className={`p-6 bg-slate-50 ${idx > 0 ? 'border-t border-slate-200' : 'border-b border-slate-200'}`}>
+                <h2 className="font-semibold text-slate-900 flex items-center gap-2">
+                  <Icon size={18} className="text-emerald-600" />
+                  {section.title}
+                </h2>
+              </div>
+              <div className="p-6 space-y-4">
+                {section.items.map((item, itemIdx) => (
+                  <label key={itemIdx} className="flex items-start gap-3 cursor-pointer group">
+                    <input type="checkbox" className="mt-1 rounded text-emerald-600 focus:ring-emerald-500" />
+                    <div>
+                      <div className="font-medium text-slate-900 group-hover:text-emerald-700 transition-colors">{item.label}</div>
+                      <div className="text-sm text-slate-500">{item.desc}</div>
+                    </div>
+                  </label>
+                ))}
+              </div>
+            </React.Fragment>
+          );
+        })}
       </div>
     </div>
   );
 }
+
+const INTEGRATIONS_DATA = [
+  {
+    category: "1. Skatteverket (Partner-API:er)",
+    icon: Database,
+    color: "text-blue-600",
+    bg: "bg-blue-100",
+    items: [
+      { name: "Ombudshantering 2.0", desc: "Kontrollerar registrerade behörigheter och verifierar fullmakter." },
+      { name: "Arbetsgivardeklaration 1.2", desc: "Kontrollerar Ruta 475 (FoU-avdrag) och Ruta 470 bakåt i tiden." },
+      { name: "Skattekonto 1.0", desc: "Verifierar skattebetalande position (saldo och transaktioner)." },
+      { name: "Beskattningsengagemang 1.0", desc: "Hämtar F-skatt, moms- och arbetsgivarregistrering." },
+      { name: "Rättsliga regler (JSON/BPMN)", desc: "Maskinläsbara filer för uppdatering av agenternas kontrollogik." }
+    ]
+  },
+  {
+    category: "2. Företags- och Finansdata",
+    icon: TrendingUp,
+    color: "text-indigo-600",
+    bg: "bg-indigo-100",
+    items: [
+      { name: "Bolagsverket / Roaring", desc: "Realtidsdata om SNI-koder, anställda och personalkostnader." },
+      { name: "Enento / Roaring (XBRL)", desc: "Digital parsning av noter i årsredovisningar (ex. uppskjuten skattefordran)." },
+      { name: "SCB (Statistikmyndigheten)", desc: "Bransch-benchmarking av personalkostnader för 15-procentsregeln." },
+      { name: "Vroom / Bilregistret", desc: "Kontroll av vagnparksstorlek för momsfel vid finansiell leasing." },
+      { name: "UC / Creditsafe", desc: "Kreditvärdighet och obeståndskontroll innan audit påbörjas." }
+    ]
+  },
+  {
+    category: "3. Fastighet & Moms",
+    icon: Building2,
+    color: "text-amber-600",
+    bg: "bg-amber-100",
+    items: [
+      { name: "Beskattningsunderlag fastighet", desc: "Hämtar underlag för fastighetsskatt och avgifter per fastighetsägare." },
+      { name: "Lantmäteriet / Metria", desc: "Identifierar BRF:er med stora kommersiella lokalytor (HFD 7071-24)." },
+      { name: "Allabrf.se", desc: "Bevakar forum och data kring lokalintäkter och planerade renoveringar." }
+    ]
+  },
+  {
+    category: "4. Ostrukturerad data & Deep Web",
+    icon: Search,
+    color: "text-purple-600",
+    bg: "bg-purple-100",
+    items: [
+      { name: "LinkedIn / Platsannons-API", desc: "Söker efter rekrytering av R&D Engineers som trigger för FoU." },
+      { name: "Google Dorks / Domstol.se", desc: "Automatiserad bevakning av nya HFD-domar rörande skattenedsättning." },
+      { name: "YouTube API", desc: "Parsar webbinarier där CTO:er beskriver tekniska innovationer och osäkerheter." }
+    ]
+  },
+  {
+    category: "5. Tillägg för Träffsäkerhet",
+    icon: Zap,
+    color: "text-emerald-600",
+    bg: "bg-emerald-100",
+    items: [
+      { name: "Greenely / Elnäts-API:er", desc: "Hämtar timdata på elförbrukning för kalkyler enligt HFD 2022 ref. 38." },
+      { name: "Scrive / BankID API", desc: "Friktionsfri e-signering av fullmakter direkt i outreach-mail." },
+      { name: "Skatteverkets RAG-databas", desc: "Intern vektordatabas med Skatteverkets Rättsliga vägledning." },
+      { name: "Global Tax Databases (IBFD)", desc: "Mappar utländska dotterbolags utdelningar mot dubbelbeskattningsavtal." },
+      { name: "Tullverket API", desc: "Identifierar felaktig tullklassificering och import/export-moms." }
+    ]
+  }
+];
 
 function IntegrationsView() {
   return (
@@ -518,44 +596,34 @@ function IntegrationsView() {
         <h1 className="text-2xl font-semibold text-slate-900">API & Event-Driven Data</h1>
         <p className="text-slate-500 mt-1">Hantera webhooks och datakällor för automatiserad prospektering.</p>
       </header>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
-              <Link size={20} />
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {INTEGRATIONS_DATA.map((category, idx) => {
+          const Icon = category.icon;
+          return (
+            <div key={idx} className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+              <div className="p-5 border-b border-slate-200 bg-slate-50 flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-lg ${category.bg} ${category.color} flex items-center justify-center shrink-0`}>
+                  <Icon size={20} />
+                </div>
+                <h2 className="font-semibold text-slate-900">{category.category}</h2>
+              </div>
+              <div className="p-5 flex-1">
+                <ul className="space-y-4">
+                  {category.items.map((item, itemIdx) => (
+                    <li key={itemIdx} className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-2 shrink-0" />
+                      <div>
+                        <div className="font-medium text-slate-900 text-sm">{item.name}</div>
+                        <div className="text-sm text-slate-500 mt-0.5">{item.desc}</div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div>
-              <h3 className="font-semibold text-slate-900">Roaring / Bolagsverket Webhooks</h3>
-              <p className="text-sm text-slate-500">Event-driven prospektering</p>
-            </div>
-          </div>
-          <p className="text-sm text-slate-600 mb-4">
-            Triggar Agent Zero direkt när en ny årsredovisning laddas upp för mål-SNI-koder. Möjliggör outreach samma vecka som datan blir offentlig.
-          </p>
-          <div className="flex items-center justify-between text-sm">
-            <span className="px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-full font-medium">Aktiv</span>
-            <button className="text-blue-600 hover:underline font-medium">Konfigurera</button>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600">
-              <FileSignature size={20} />
-            </div>
-            <div>
-              <h3 className="font-semibold text-slate-900">Scrive E-signering</h3>
-              <p className="text-sm text-slate-500">BankID Fullmaktshantering</p>
-            </div>
-          </div>
-          <p className="text-sm text-slate-600 mb-4">
-            Webhook-mottagare som lyssnar på signerade fullmakter och automatiskt hämtar Skatteverkets API-data (Arbetsgivardeklaration & Skattekonto).
-          </p>
-          <div className="flex items-center justify-between text-sm">
-            <span className="px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-full font-medium">Aktiv</span>
-            <button className="text-blue-600 hover:underline font-medium">Konfigurera</button>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );
