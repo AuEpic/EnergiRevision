@@ -19,7 +19,9 @@ import {
   Layers,
   Link,
   Cpu,
-  FileSignature
+  FileSignature,
+  Menu,
+  X
 } from 'lucide-react';
 
 // --- Mock Data ---
@@ -143,7 +145,7 @@ const LEADS = [
 
 // --- Components ---
 
-function Sidebar({ activeTab, setActiveTab }: { activeTab: string, setActiveTab: (t: string) => void }) {
+function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }: { activeTab: string, setActiveTab: (t: string) => void, isOpen: boolean, setIsOpen: (o: boolean) => void }) {
   const navItems = [
     { id: 'dashboard', label: 'Översikt', icon: BarChart3 },
     { id: 'leads', label: 'Prospektering', icon: Users },
@@ -155,45 +157,63 @@ function Sidebar({ activeTab, setActiveTab }: { activeTab: string, setActiveTab:
   ];
 
   return (
-    <div className="w-64 bg-slate-900 text-slate-300 flex flex-col h-screen border-r border-slate-800">
-      <div className="p-6">
-        <div className="flex items-center gap-3 text-white font-bold text-xl tracking-tight">
-          <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
-            <TrendingUp size={20} className="text-white" />
-          </div>
-          OpenClaw
-        </div>
-        <div className="text-xs text-slate-500 mt-1 font-mono">Svensk Skatteåtervinning AB</div>
-      </div>
+    <>
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-900/50 z-40 lg:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
       
-      <nav className="flex-1 px-4 space-y-1 mt-4">
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = activeTab === item.id;
-          return (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id)}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                isActive 
-                  ? 'bg-emerald-500/10 text-emerald-400' 
-                  : 'hover:bg-slate-800 hover:text-white'
-              }`}
-            >
-              <Icon size={18} />
-              {item.label}
-            </button>
-          );
-        })}
-      </nav>
+      <div className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-300 flex flex-col h-screen border-r border-slate-800 transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+        <div className="p-6 flex items-center justify-between">
+          <div>
+            <div className="flex items-center gap-3 text-white font-bold text-xl tracking-tight">
+              <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+                <TrendingUp size={20} className="text-white" />
+              </div>
+              OpenClaw
+            </div>
+            <div className="text-xs text-slate-500 mt-1 font-mono">Svensk Skatteåtervinning</div>
+          </div>
+          <button className="lg:hidden text-slate-400 hover:text-white" onClick={() => setIsOpen(false)}>
+            <X size={24} />
+          </button>
+        </div>
+        
+        <nav className="flex-1 px-4 space-y-1 mt-4 overflow-y-auto">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => {
+                  setActiveTab(item.id);
+                  setIsOpen(false);
+                }}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  isActive 
+                    ? 'bg-emerald-500/10 text-emerald-400' 
+                    : 'hover:bg-slate-800 hover:text-white'
+                }`}
+              >
+                <Icon size={18} />
+                {item.label}
+              </button>
+            );
+          })}
+        </nav>
 
-      <div className="p-4 border-t border-slate-800">
-        <button className="flex items-center gap-3 px-3 py-2 w-full text-sm text-slate-400 hover:text-white transition-colors">
-          <Settings size={18} />
-          Inställningar
-        </button>
+        <div className="p-4 border-t border-slate-800">
+          <button className="flex items-center gap-3 px-3 py-2 w-full text-sm text-slate-400 hover:text-white transition-colors">
+            <Settings size={18} />
+            Inställningar
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -271,23 +291,23 @@ function DashboardView() {
 function LeadsView() {
   return (
     <div className="space-y-6">
-      <header className="flex justify-between items-end">
+      <header className="flex flex-col md:flex-row md:justify-between md:items-end gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-slate-900">Prospektering & Lead Scoring</h1>
           <p className="text-slate-500 mt-1">Identifierade bolag baserat på SNI, personalkostnader och API-data.</p>
         </div>
-        <div className="relative">
+        <div className="relative w-full md:w-auto">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
           <input 
             type="text" 
             placeholder="Sök bolag eller SNI..." 
-            className="pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 w-64"
+            className="pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 w-full md:w-64"
           />
         </div>
       </header>
 
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <table className="w-full text-left text-sm">
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
+        <table className="w-full text-left text-sm whitespace-nowrap">
           <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium">
             <tr>
               <th className="px-6 py-4">Företag</th>
@@ -677,22 +697,40 @@ function ArchitectureView() {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="flex h-screen bg-slate-50 font-sans selection:bg-emerald-200">
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+    <div className="flex h-screen bg-slate-50 font-sans selection:bg-emerald-200 overflow-hidden">
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} isOpen={isMobileMenuOpen} setIsOpen={setIsMobileMenuOpen} />
       
-      <main className="flex-1 overflow-y-auto p-8">
-        <div className="max-w-6xl mx-auto">
-          {activeTab === 'dashboard' && <DashboardView />}
-          {activeTab === 'leads' && <LeadsView />}
-          {activeTab === 'agents' && <AgentsView />}
-          {activeTab === 'checklist' && <ChecklistView />}
-          {activeTab === 'integrations' && <IntegrationsView />}
-          {activeTab === 'onboarding' && <OnboardingView />}
-          {activeTab === 'architecture' && <ArchitectureView />}
-        </div>
-      </main>
+      <div className="flex-1 flex flex-col min-w-0">
+        <header className="lg:hidden bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between sticky top-0 z-30">
+          <div className="flex items-center gap-2 font-bold text-slate-900">
+            <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+              <TrendingUp size={18} className="text-white" />
+            </div>
+            OpenClaw
+          </div>
+          <button 
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="p-2 -mr-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+          >
+            <Menu size={24} />
+          </button>
+        </header>
+
+        <main className="flex-1 overflow-y-auto p-4 md:p-8">
+          <div className="max-w-6xl mx-auto">
+            {activeTab === 'dashboard' && <DashboardView />}
+            {activeTab === 'leads' && <LeadsView />}
+            {activeTab === 'agents' && <AgentsView />}
+            {activeTab === 'checklist' && <ChecklistView />}
+            {activeTab === 'integrations' && <IntegrationsView />}
+            {activeTab === 'onboarding' && <OnboardingView />}
+            {activeTab === 'architecture' && <ArchitectureView />}
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
