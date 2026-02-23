@@ -21,7 +21,9 @@ import {
   Cpu,
   FileSignature,
   Menu,
-  X
+  X,
+  Scale,
+  Globe
 } from 'lucide-react';
 
 // --- Mock Data ---
@@ -89,6 +91,15 @@ const AGENTS = [
     icon: Zap,
     color: 'text-green-500',
     bg: 'bg-green-100',
+  },
+  {
+    id: 'wht',
+    name: 'Global Group Specialist',
+    emoji: '🌍💸',
+    focus: 'Utländsk källskatt (WHT) & Dubbelbeskattningsavtal',
+    icon: Globe,
+    color: 'text-rose-500',
+    bg: 'bg-rose-100',
   }
 ];
 
@@ -152,6 +163,7 @@ function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }: { activeTab: st
     { id: 'agents', label: 'AI Agenter', icon: Bot },
     { id: 'integrations', label: 'API & Data', icon: Database },
     { id: 'checklist', label: 'Granskningsmall', icon: CheckSquare },
+    { id: 'hfd', label: 'HFD-Bevakning', icon: Scale },
     { id: 'onboarding', label: 'Kund-Onboarding', icon: FileSignature },
     { id: 'architecture', label: 'Tech Stack', icon: Layers },
   ];
@@ -173,7 +185,7 @@ function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }: { activeTab: st
               <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
                 <TrendingUp size={20} className="text-white" />
               </div>
-              OpenClaw
+              OpenRevision
             </div>
             <div className="text-xs text-slate-500 mt-1 font-mono">Svensk Skatteåtervinning</div>
           </div>
@@ -462,7 +474,11 @@ const CHECKLIST_DATA = [
     title: "4. Koncern- & Internationella strukturer",
     icon: Building2,
     items: [
-      { label: "Utländska dotterbolag", desc: "Granska svenska koncerner (likt Addtech) med utländsk närvaro för att hitta felaktig internationell källskatt (WHT) via dubbelbeskattningsavtal." },
+      { label: "Utländska dotterbolag & IBFD", desc: "Granska svenska koncerner (likt Addtech) med utländsk närvaro för att hitta felaktig internationell källskatt (WHT) via dubbelbeskattningsavtal." },
+      { label: "Dubbelbeskattningsavtal (Skatteavtal)", desc: "Matcha finansiella intäkter från utlandet (ex. utdelningar) systematiskt mot de specifika avtal Sverige har med respektive land." },
+      { label: "Country-by-country-rapportering (CbCR)", desc: "Analysera effektiva skattesatser i olika jurisdiktioner där koncernen har verksamhet." },
+      { label: "Koncernredovisningens noter", desc: "Djupparsning efter \"Utländsk skatt\" och \"Förändring av uppskjuten skattefordran\" för att hitta oaktiverade skattetillgångar i utländska dotterbolag." },
+      { label: "Kartläggning av koncernstrukturer", desc: "Använd globala företagsdatabaser för att upptäcka anomalier i skattebetalningar över landsgränser." },
       { label: "Leasingmoms", desc: "Granska bolag med stora vagnparker. Vid avslut av finansiell leasing redovisas ofta för mycket utgående moms på \"övervärdet\" vid försäljning till bilhandlare." }
     ]
   },
@@ -583,8 +599,18 @@ const INTEGRATIONS_DATA = [
       { name: "Greenely / Elnäts-API:er", desc: "Hämtar timdata på elförbrukning för kalkyler enligt HFD 2022 ref. 38." },
       { name: "Scrive / BankID API", desc: "Friktionsfri e-signering av fullmakter direkt i outreach-mail." },
       { name: "Skatteverkets RAG-databas", desc: "Intern vektordatabas med Skatteverkets Rättsliga vägledning." },
-      { name: "Global Tax Databases (IBFD)", desc: "Mappar utländska dotterbolags utdelningar mot dubbelbeskattningsavtal." },
       { name: "Tullverket API", desc: "Identifierar felaktig tullklassificering och import/export-moms." }
+    ]
+  },
+  {
+    category: "6. Internationell Skatt & Koncerner",
+    icon: Globe,
+    color: "text-rose-600",
+    bg: "bg-rose-100",
+    items: [
+      { name: "IBFD (Int. Bureau of Fiscal Documentation)", desc: "Primär global skattedatabas för att mappa utländska dotterbolags utdelningar mot dubbelbeskattningsavtal." },
+      { name: "Country-by-country-rapportering (CbCR)", desc: "Data för att analysera effektiva skattesatser i olika jurisdiktioner för större koncerner." },
+      { name: "Globala företagsdatabaser (t.ex. Roaring Int.)", desc: "Kartlägger komplexa koncernstrukturer för att upptäcka anomalier i skattebetalningar över landsgränser." }
     ]
   }
 ];
@@ -714,7 +740,7 @@ function OnboardingView() {
           </div>
           
           <div className="flex-1 overflow-y-auto space-y-2">
-            <div className="text-slate-500">OpenClaw Framework v2.4.1 initierat...</div>
+            <div className="text-slate-500">OpenRevision Framework v2.4.1 initierat...</div>
             <div className="text-slate-500">Laddar prospekteringslogik för [FÖRETAGET AB]...</div>
             <div className="text-blue-400 animate-pulse">&gt; Inväntar BankID-auktorisering från CFO...</div>
             
@@ -735,8 +761,8 @@ function ArchitectureView() {
     { name: 'NotebookLM', role: 'Chief Legal Officer', desc: 'RAG-arkitektur för Rättslig Vägledning och djup juridisk förståelse av HFD-domar.', color: 'bg-blue-100 text-blue-700' },
     { name: 'Clay.com / Roaring', role: 'Prospekteringsmotor', desc: 'Bygger leads-listor och hittar CFO-kontaktuppgifter baserat på finansiella filter (>15% personalkostnad).', color: 'bg-purple-100 text-purple-700' },
     { name: 'Vercel & Namecheap', role: 'Hosting & Routing', desc: 'Serverless frontend, webhook-mottagare och e-post routing (cfo@energirevision.com).', color: 'bg-slate-200 text-slate-800' },
-    { name: 'n8n / Make.com', role: 'Centralstation', desc: 'Visuell automation som binder ihop Scrive-webhooks med Skatteverkets API och OpenClaw.', color: 'bg-orange-100 text-orange-700' },
-    { name: 'OpenClaw / Agent Zero', role: 'Execution Engine', desc: 'Utför själva revisionen, integrerar med fullmakts-API och skriver uppdragsavtal.', color: 'bg-emerald-100 text-emerald-700' }
+    { name: 'n8n / Make.com', role: 'Centralstation', desc: 'Visuell automation som binder ihop Scrive-webhooks med Skatteverkets API och OpenRevision.', color: 'bg-orange-100 text-orange-700' },
+    { name: 'OpenRevision / Agent Zero', role: 'Execution Engine', desc: 'Utför själva revisionen, integrerar med fullmakts-API och skriver uppdragsavtal.', color: 'bg-emerald-100 text-emerald-700' }
   ];
 
   return (
@@ -763,6 +789,150 @@ function ArchitectureView() {
   );
 }
 
+const HFD_RULINGS = [
+  {
+    id: 'energi',
+    title: 'HFD 2022 ref. 38',
+    category: 'Energiskatt',
+    desc: 'Raderade "huvudsaklighetsprincipen". Ger företag med blandad verksamhet (t.ex. bagerier, snötillverkning) rätt till nedsättning (från ca 45 öre till 0,6 öre/kWh) för el i tillverkningsprocessen.',
+    icon: Zap,
+    color: 'text-emerald-600',
+    bg: 'bg-emerald-100'
+  },
+  {
+    id: 'sanktion',
+    title: 'HFD 2024 ref. 52 & 7304-24',
+    category: 'Skattetillägg',
+    desc: 'Skatteverket får inte påföra skattetillägg för fel som är uppenbara eller lätta att identifiera vid normal granskning (t.ex. uppgifter i räkenskapsschemat).',
+    icon: ShieldAlert,
+    color: 'text-slate-600',
+    bg: 'bg-slate-100'
+  },
+  {
+    id: 'moms_brf',
+    title: 'HFD 7071-24',
+    category: 'Moms för BRF:er',
+    desc: 'Ger bostadsrättsföreningar med kommersiella lokaler rätt att använda omsättningsbaserad metod istället för yta vid momsfördelning (ofta högre avdrag).',
+    icon: Building2,
+    color: 'text-amber-600',
+    bg: 'bg-amber-100'
+  },
+  {
+    id: 'hogkullen',
+    title: 'Högkullen-målet (2026-01-27)',
+    category: 'Koncernmoms',
+    desc: 'Underkänner Skatteverkets schablonmetod för marknadsvärdering av koncerninterna tjänster. Öppnar för återvinning av tidigare redovisad moms.',
+    icon: TrendingUp,
+    color: 'text-indigo-600',
+    bg: 'bg-indigo-100'
+  },
+  {
+    id: 'cyklar',
+    title: 'HFD 2024 ref. 33',
+    category: 'Förmånscyklar',
+    desc: 'Fastställer att förmånscyklar mot bruttolöneavdrag är en momspliktig tjänst, vilket ger avdragsrätt för ingående moms på cykelinköpen.',
+    icon: Car,
+    color: 'text-blue-600',
+    bg: 'bg-blue-100'
+  },
+  {
+    id: 'konsult',
+    title: 'Mål nr 307-308/24',
+    category: 'Konsultkostnader',
+    desc: 'HFD medgav avdrag för konsultarvoden vid bolagsförsäljning då de syftade till att effektivisera verksamheten, trots Skatteverkets nekande.',
+    icon: FileText,
+    color: 'text-purple-600',
+    bg: 'bg-purple-100'
+  }
+];
+
+function HfdView() {
+  return (
+    <div className="space-y-6">
+      <header>
+        <h1 className="text-2xl font-semibold text-slate-900">HFD-Bevakning & Rättspraxis</h1>
+        <p className="text-slate-500 mt-1">Den centrala motorn för att transformera juridiska genombrott till automatiserade prospekteringsfilter.</p>
+      </header>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 space-y-6">
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div className="p-5 border-b border-slate-200 bg-slate-50">
+              <h2 className="font-semibold text-slate-900">Kritiska Prejudikat (Spearheads)</h2>
+            </div>
+            <div className="divide-y divide-slate-100">
+              {HFD_RULINGS.map((ruling) => {
+                const Icon = ruling.icon;
+                return (
+                  <div key={ruling.id} className="p-5 flex gap-4 hover:bg-slate-50 transition-colors">
+                    <div className={`w-10 h-10 rounded-lg ${ruling.bg} ${ruling.color} flex items-center justify-center shrink-0`}>
+                      <Icon size={20} />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-medium text-slate-900">{ruling.title}</h3>
+                        <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-600">{ruling.category}</span>
+                      </div>
+                      <p className="text-sm text-slate-600 mt-1">{ruling.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h3 className="font-semibold text-slate-900 flex items-center gap-2 mb-4">
+              <Search size={18} className="text-emerald-600" />
+              Monitoreringsstrategi
+            </h3>
+            <ul className="space-y-3 text-sm text-slate-600">
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+                <span><strong>Målriktade sökningar:</strong> Agenten utför regelbundna sökningar (t.ex. <code>site:domstol.se HFD "skatteåtervinning" 2025</code>).</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+                <span><strong>Nyckelordsbevakning:</strong> Prioriterar domar med "skattenedsättning" eller "återvinning av skatt".</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+                <span><strong>Impact-analys:</strong> Sammanfattar rättsverkan och uppdaterar automatiskt <code>api_wishlist.md</code> för att förfina sökfilter.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-sm text-slate-300">
+            <h3 className="font-semibold text-white flex items-center gap-2 mb-4">
+              <Terminal size={18} className="text-emerald-500" />
+              Action Plan
+            </h3>
+            <ul className="space-y-4 text-sm">
+              <li>
+                <div className="text-emerald-400 font-medium mb-1">1. RAG-arkitektur</div>
+                <div className="text-slate-400">Mata in Skatteverkets dagsfärska "Rättsliga vägledning" i en vektordatabas för att bemöta handläggare med deras egna riktlinjer.</div>
+              </li>
+              <li>
+                <div className="text-emerald-400 font-medium mb-1">2. Retroaktivitetskontroll</div>
+                <div className="text-slate-400">Applicera alltid 6-årsregeln på nya HFD-domar för att identifiera historiska miljonbelopp.</div>
+              </li>
+              <li>
+                <div className="text-emerald-400 font-medium mb-1">3. Social Proof-mapping</div>
+                <div className="text-slate-400">Mappa framgångsrika domar mot konkurrenter i samma SNI-kod för att använda som säljargument.</div>
+              </li>
+            </ul>
+            <div className="mt-6 pt-4 border-t border-slate-800">
+              <code className="text-xs text-emerald-500 bg-black px-2 py-1 rounded">openclaw agents add skatte-expert</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -777,7 +947,7 @@ export default function App() {
             <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
               <TrendingUp size={18} className="text-white" />
             </div>
-            OpenClaw
+            OpenRevision
           </div>
           <button 
             onClick={() => setIsMobileMenuOpen(true)}
@@ -794,6 +964,7 @@ export default function App() {
             {activeTab === 'agents' && <AgentsView />}
             {activeTab === 'checklist' && <ChecklistView />}
             {activeTab === 'integrations' && <IntegrationsView />}
+            {activeTab === 'hfd' && <HfdView />}
             {activeTab === 'onboarding' && <OnboardingView />}
             {activeTab === 'architecture' && <ArchitectureView />}
           </div>
