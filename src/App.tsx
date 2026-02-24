@@ -23,8 +23,13 @@ import {
   Menu,
   X,
   Scale,
-  Globe
+  Globe,
+  Cpu as CpuIcon,
+  Server,
+  ShieldCheck,
+  Activity
 } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 // --- Mock Data ---
 
@@ -151,6 +156,42 @@ const LEADS = [
     agent: 'leasing',
     status: 'Screening',
     tags: ['Leasingmoms', 'Stor vagnpark']
+  },
+  {
+    id: 5,
+    name: 'Nordic AI Systems',
+    sni: '62010',
+    industry: 'Dataprogrammering',
+    personnelCost: '12.3 MSEK',
+    rdDeduction: '0 SEK',
+    score: 9,
+    agent: 'sanktion',
+    status: 'Deep Dive',
+    tags: ['FoU-avdrag', 'Hög Potential']
+  },
+  {
+    id: 6,
+    name: 'Skidort Väst AB',
+    sni: '93290',
+    industry: 'Fritidsanläggningar',
+    personnelCost: '15.2 MSEK',
+    rdDeduction: 'N/A',
+    score: 8,
+    agent: 'energi',
+    status: 'API Verified',
+    tags: ['Energiskatt', 'Snötillverkning']
+  },
+  {
+    id: 7,
+    name: 'Logistikpartner Sverige',
+    sni: '49410',
+    industry: 'Godstransport',
+    personnelCost: '45.1 MSEK',
+    rdDeduction: 'N/A',
+    score: 5,
+    agent: 'leasing',
+    status: 'Screening',
+    tags: ['Leasingmoms', 'Vagnpark']
   }
 ];
 
@@ -166,6 +207,7 @@ function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }: { activeTab: st
     { id: 'hfd', label: 'HFD-Bevakning', icon: Scale },
     { id: 'onboarding', label: 'Kund-Onboarding', icon: FileSignature },
     { id: 'architecture', label: 'Tech Stack', icon: Layers },
+    { id: 'engine', label: 'Core Engine (macOS)', icon: Server },
   ];
 
   return (
@@ -301,6 +343,20 @@ function DashboardView() {
 }
 
 function LeadsView() {
+  // Sort leads by score descending for the chart
+  const chartData = [...LEADS].sort((a, b) => b.score - a.score).map(lead => ({
+    name: lead.name.length > 15 ? lead.name.substring(0, 15) + '...' : lead.name,
+    fullName: lead.name,
+    score: lead.score,
+    industry: lead.industry
+  }));
+
+  const getScoreColor = (score: number) => {
+    if (score >= 8) return '#10b981'; // emerald-500
+    if (score >= 6) return '#f59e0b'; // amber-500
+    return '#64748b'; // slate-500
+  };
+
   return (
     <div className="space-y-6">
       <header className="flex flex-col md:flex-row md:justify-between md:items-end gap-4">
@@ -317,6 +373,59 @@ function LeadsView() {
           />
         </div>
       </header>
+
+      {/* Lead Scoring Visualization */}
+      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <div className="mb-4">
+          <h2 className="text-lg font-semibold text-slate-900">Recovery Potential Score (Top Leads)</h2>
+          <p className="text-sm text-slate-500">Visar poängsättning (1-10) baserad på Agent Zeros logik.</p>
+        </div>
+        <div className="h-64 w-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 20 }}>
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+              <XAxis 
+                dataKey="name" 
+                axisLine={false} 
+                tickLine={false} 
+                tick={{ fontSize: 12, fill: '#64748b' }} 
+                dy={10}
+              />
+              <YAxis 
+                axisLine={false} 
+                tickLine={false} 
+                tick={{ fontSize: 12, fill: '#64748b' }} 
+                domain={[0, 10]}
+                ticks={[0, 2, 4, 6, 8, 10]}
+              />
+              <Tooltip 
+                cursor={{ fill: '#f8fafc' }}
+                content={({ active, payload }) => {
+                  if (active && payload && payload.length) {
+                    const data = payload[0].payload;
+                    return (
+                      <div className="bg-slate-900 text-white p-3 rounded-lg shadow-xl border border-slate-700">
+                        <p className="font-semibold">{data.fullName}</p>
+                        <p className="text-slate-400 text-xs mb-2">{data.industry}</p>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-slate-400">Score:</span>
+                          <span className="font-bold text-emerald-400">{data.score} / 10</span>
+                        </div>
+                      </div>
+                    );
+                  }
+                  return null;
+                }}
+              />
+              <Bar dataKey="score" radius={[4, 4, 0, 0]} maxBarSize={50}>
+                {chartData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={getScoreColor(entry.score)} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
 
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
         <table className="w-full text-left text-sm whitespace-nowrap">
@@ -933,6 +1042,120 @@ function HfdView() {
   );
 }
 
+function EngineView() {
+  return (
+    <div className="space-y-6">
+      <header>
+        <h1 className="text-2xl font-semibold text-slate-900">Core Engine (macOS 26.3+)</h1>
+        <p className="text-slate-500 mt-1">Insyn i OpenClaw Gateway och den underliggande Swift-arkitekturen.</p>
+      </header>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* System Architecture */}
+        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <h2 className="text-lg font-semibold text-slate-900 flex items-center gap-2 mb-4">
+            <CpuIcon size={20} className="text-emerald-600" />
+            Systemarkitektur
+          </h2>
+          <div className="space-y-4">
+            <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
+              <h3 className="font-medium text-slate-900 mb-1">MLX Acceleration (M4)</h3>
+              <p className="text-sm text-slate-600">Lokal LLM-inferens på GPU. Utnyttjar M4:s Neural Engine (16-core, 38 TOPS) för embeddings och Vision-AI (Qwen3-VL 4B).</p>
+            </div>
+            <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
+              <h3 className="font-medium text-slate-900 mb-1">Shared Vectorized RAG</h3>
+              <p className="text-sm text-slate-600">Lokal ChromaDB för Skatteverkets Rättsliga Vägledning och HFD-prejudikat. Hybrid-sökning (semantisk + metadata).</p>
+            </div>
+            <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
+              <h3 className="font-medium text-slate-900 mb-1">A2A-Protokoll</h3>
+              <p className="text-sm text-slate-600">Google/Linux Foundation standard för inter-agent kommunikation via HTTP/2 och Server-Sent Events (SSE).</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Security & Compliance */}
+        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <h2 className="text-lg font-semibold text-slate-900 flex items-center gap-2 mb-4">
+            <ShieldCheck size={20} className="text-emerald-600" />
+            Säkerhet & Compliance (Zero Trust)
+          </h2>
+          <ul className="space-y-3 text-sm text-slate-600">
+            <li className="flex items-start gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+              <div>
+                <strong className="text-slate-900 block">Data Residency</strong>
+                All vektor-data lagras lokalt på enheten (ChromaDB).
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+              <div>
+                <strong className="text-slate-900 block">Kryptering</strong>
+                AES-256 för vilande data, TLS 1.3 för A2A-kommunikation.
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+              <div>
+                <strong className="text-slate-900 block">Input Sanitization</strong>
+                Alla PDF-er skannas i en isolerad sandbox innan Vision-AI processing.
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+              <div>
+                <strong className="text-slate-900 block">Retention</strong>
+                Automatisk radering efter 7 år (skatterättslig preskription).
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        {/* Real-time Dashboard Mock */}
+        <div className="lg:col-span-2 bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl text-slate-300">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-semibold text-white flex items-center gap-2">
+              <Activity size={20} className="text-emerald-500" />
+              Orchestrator Live Monitor
+            </h2>
+            <div className="flex items-center gap-2 text-xs font-mono">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              Memory Pressure: Normal
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-sm">
+            <div className="bg-black/50 p-4 rounded-lg border border-slate-800">
+              <div className="text-slate-500 mb-1">FoU Agent</div>
+              <div className="text-emerald-400">Status: Executing</div>
+              <div className="text-xs text-slate-400 mt-2">Task: Analysera FoU-kvalificering</div>
+              <div className="w-full bg-slate-800 h-1.5 mt-3 rounded-full overflow-hidden">
+                <div className="bg-emerald-500 h-full w-[45%]"></div>
+              </div>
+            </div>
+            <div className="bg-black/50 p-4 rounded-lg border border-slate-800">
+              <div className="text-slate-500 mb-1">Moms Agent</div>
+              <div className="text-blue-400">Status: Awaiting A2A</div>
+              <div className="text-xs text-slate-400 mt-2">Task: Sub-task Moms-implikationer</div>
+              <div className="w-full bg-slate-800 h-1.5 mt-3 rounded-full overflow-hidden">
+                <div className="bg-blue-500 h-full w-[10%]"></div>
+              </div>
+            </div>
+            <div className="bg-black/50 p-4 rounded-lg border border-slate-800">
+              <div className="text-slate-500 mb-1">Vision-AI (MLX)</div>
+              <div className="text-amber-400">Status: Parsing PDF</div>
+              <div className="text-xs text-slate-400 mt-2">Model: Qwen3-VL 4B (GPU)</div>
+              <div className="w-full bg-slate-800 h-1.5 mt-3 rounded-full overflow-hidden">
+                <div className="bg-amber-500 h-full w-[82%]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -967,6 +1190,7 @@ export default function App() {
             {activeTab === 'hfd' && <HfdView />}
             {activeTab === 'onboarding' && <OnboardingView />}
             {activeTab === 'architecture' && <ArchitectureView />}
+            {activeTab === 'engine' && <EngineView />}
           </div>
         </main>
       </div>
