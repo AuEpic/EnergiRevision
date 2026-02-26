@@ -1,39 +1,31 @@
-import React, { useState, useMemo } from 'react';
-import { 
-  BarChart3, 
-  Users, 
-  Bot, 
-  CheckSquare, 
-  Settings, 
-  Search,
-  ShieldAlert,
-  Building2,
-  Car,
-  Zap,
-  ChevronRight,
-  TrendingUp,
-  AlertCircle,
-  FileText,
-  Database,
-  Terminal,
-  Layers,
-  Link,
-  Cpu,
-  FileSignature,
-  Menu,
-  X,
-  Scale,
-  Globe,
-  Cpu as CpuIcon,
-  Server,
-  ShieldCheck,
-  Activity,
-  Download,
-  Printer,
-  ChevronDown,
-  Filter
+import {
+    Activity,
+    BarChart3,
+    Bot,
+    Building2,
+    Car,
+    CheckSquare,
+    Database,
+    Download,
+    FileSignature,
+    FileText,
+    Filter,
+    Layers,
+    Menu,
+    Printer,
+    Scale,
+    Search,
+    Server,
+    Settings,
+    ShieldAlert,
+    ShieldCheck,
+    TrendingUp,
+    Users,
+    X,
+    Zap
 } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import React, { useMemo, useState } from 'react';
+import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 // --- Mock Data ---
 
@@ -191,12 +183,12 @@ function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }: { activeTab: st
   return (
     <>
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-slate-900/50 z-40 lg:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
-      
+
       <div className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-300 flex flex-col h-screen border-r border-slate-800 transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
         <div className="p-6 flex items-center justify-between">
           <div>
@@ -212,7 +204,7 @@ function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }: { activeTab: st
             <X size={24} />
           </button>
         </div>
-        
+
         <nav className="flex-1 px-4 space-y-1 mt-4 overflow-y-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -225,8 +217,8 @@ function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }: { activeTab: st
                   setIsOpen(false);
                 }}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                  isActive 
-                    ? 'bg-emerald-500/10 text-emerald-400' 
+                  isActive
+                    ? 'bg-emerald-500/10 text-emerald-400'
                     : 'hover:bg-slate-800 hover:text-white'
                 }`}
               >
@@ -373,7 +365,7 @@ function DashboardView() {
 }
 
 function LeadsView() {
-  const chartData = useMemo(() => 
+  const chartData = useMemo(() =>
     [...LEADS].sort((a, b) => b.score - a.score).map(lead => ({
       name: lead.name.length > 15 ? lead.name.substring(0, 15) + '...' : lead.name,
       fullName: lead.name,
@@ -389,7 +381,6 @@ function LeadsView() {
   };
 
   const exportToPdf = () => {
-    alert("Genererar PDF-rapport med fullmaktstext för utskrift...");
     window.print();
   };
 
@@ -401,7 +392,7 @@ function LeadsView() {
           <p className="text-slate-500 mt-1">Research-leads från NotebookLM och Agent Zero.</p>
         </div>
         <div className="flex gap-3">
-          <button 
+          <button
             onClick={exportToPdf}
             className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg text-sm font-bold hover:bg-black transition-all shadow-lg shadow-slate-200"
           >
@@ -409,9 +400,9 @@ function LeadsView() {
           </button>
           <div className="relative w-full md:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-            <input 
-              type="text" 
-              placeholder="Sök bolag eller SNI..." 
+            <input
+              type="text"
+              placeholder="Sök bolag eller SNI..."
               className="pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 w-full"
             />
           </div>
@@ -429,15 +420,15 @@ function LeadsView() {
               <BarChart layout="vertical" data={chartData} margin={{ top: 0, right: 30, left: 40, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" />
                 <XAxis type="number" hide domain={[0, 10]} />
-                <YAxis 
-                  dataKey="name" 
-                  type="category" 
-                  axisLine={false} 
-                  tickLine={false} 
+                <YAxis
+                  dataKey="name"
+                  type="category"
+                  axisLine={false}
+                  tickLine={false}
                   tick={{ fontSize: 10, fill: '#64748b' }}
                   width={100}
                 />
-                <Tooltip 
+                <Tooltip
                   cursor={{ fill: '#f8fafc' }}
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
@@ -560,7 +551,7 @@ function AgentsView() {
               </div>
               <h3 className="text-lg font-semibold text-slate-900">{agent.name}</h3>
               <p className="text-sm text-slate-500 mt-1 mb-4 h-10">{agent.focus}</p>
-              
+
               <div className="space-y-2 border-t border-slate-100 pt-4">
                 <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Kärnkompetens</div>
                 <ul className="text-sm text-slate-700 space-y-2">
@@ -578,7 +569,7 @@ function AgentsView() {
                   </li>
                 </ul>
               </div>
-              
+
               <button className="mt-6 w-full py-2 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-lg transition-colors uppercase tracking-wider">
                 Starta Agent
               </button>
@@ -659,7 +650,7 @@ function IntegrationsView() {
         <h1 className="text-2xl font-semibold text-slate-900">API & Event-Driven Data</h1>
         <p className="text-slate-500 mt-1">Hantera webhooks och datakällor för automatiserad prospektering.</p>
       </header>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {INTEGRATIONS_DATA.map((category, idx) => {
           const Icon = category.icon;
@@ -726,7 +717,7 @@ function OnboardingView() {
     if (isSigning) return;
     setIsSigning(true);
     setLogs([]);
-    
+
     const sequence = [
       { text: "> Mottagit webhook: Status [Closed]. BankID verifierat.", color: "text-emerald-500", delay: 1000 },
       { text: "> Upprättar anslutning till Skatteverket Partner API (Ombudshantering 2.0)...", color: "text-slate-400", delay: 2500 },
@@ -756,7 +747,7 @@ function OnboardingView() {
           <h2 className="text-3xl font-bold text-white mb-4">
             Klartecken för <span className="text-emerald-500">Deep Audit</span>
           </h2>
-          <button 
+          <button
             onClick={startScriveFlow}
             disabled={isSigning}
             className={`w-full py-4 px-8 rounded-xl font-bold text-lg transition-all flex justify-center items-center gap-3 ${
@@ -783,7 +774,7 @@ function ArchitectureView() {
       </header>
       <div className="bg-white p-6 rounded-2xl border border-slate-200">
          <pre className="text-xs text-slate-600 whitespace-pre-wrap">
-           {JSON.stringify({ 
+           {JSON.stringify({
              "Core": "OpenClaw / Agent Zero",
              "Knowledge": "NotebookLM RAG",
              "Data": "Skatteverket / Roaring / Bolagsverket",
@@ -834,19 +825,19 @@ export default function App() {
 
   return (
     <div className="flex h-screen bg-slate-50 font-sans text-slate-900 overflow-hidden">
-      <Sidebar 
-        activeTab={activeTab} 
-        setActiveTab={setActiveTab} 
-        isOpen={isSidebarOpen} 
-        setIsOpen={setIsSidebarOpen} 
+      <Sidebar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        isOpen={isSidebarOpen}
+        setIsOpen={setIsSidebarOpen}
       />
-      
+
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 lg:px-8 shrink-0">
           <button className="lg:hidden text-slate-500" onClick={() => setIsSidebarOpen(true)}>
             <Menu size={24} />
           </button>
-          
+
           <div className="flex-1 flex justify-center lg:justify-start">
              <div className="hidden lg:flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
                 <Activity size={14} className="text-emerald-500" />
@@ -865,7 +856,7 @@ export default function App() {
           </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto p-4 lg:p-8">
+        <main className="flex-1 overflow-y-auto p-4 lg:p-8 print:p-0">
           {activeTab === 'dashboard' && <DashboardView />}
           {activeTab === 'leads' && <LeadsView />}
           {activeTab === 'agents' && <AgentsView />}
@@ -877,6 +868,81 @@ export default function App() {
           {activeTab === 'engine' && <EngineView />}
         </main>
       </div>
+
+      {/* --- Print Protected Content / Fullmakt --- */}
+      <div className="hidden print:block fixed inset-0 bg-white p-12 text-slate-900 z-[9999]">
+        <div className="max-w-3xl mx-auto space-y-8">
+          <div className="flex justify-between items-start border-b-2 border-slate-900 pb-6">
+            <div>
+              <h1 className="text-3xl font-bold uppercase tracking-tighter">Fullmakt & Uppdragsbekräftelse</h1>
+              <p className="text-slate-500 mt-1">EnergiRevision / OpenRevision Framework</p>
+            </div>
+            <TrendingUp size={48} className="text-emerald-600" />
+          </div>
+
+          <div className="space-y-4 text-justify">
+            <p className="font-bold text-lg">Härmed befullmäktigas EnergiRevision att för undertecknat bolags räkning:</p>
+            <ol className="list-decimal pl-5 space-y-2">
+              <li>Inhämta uppgifter från Skatteverket rörande bolagets skattekonto, arbetsgivardeklarationer och beskattningsbeslut.</li>
+              <li>Genomföra teknisk revision av historiska energiskatter, FoU-avdrag och momshantering.</li>
+              <li>Biträda bolaget i kontakt med myndigheter för återvinning av felaktigt inbetald skatt.</li>
+            </ol>
+            <p>
+              Denna fullmakt gäller i 12 månader från undertecknande eller tills den skriftligen återkallas.
+              Ersättning utgår enligt principen "No Cure - No Pay" (25% av återvunnet belopp) om inget annat avtalats.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-12 pt-12">
+            <div className="border-t border-slate-400 pt-4">
+              <p className="text-xs font-bold uppercase text-slate-400">Ort & Datum</p>
+              <div className="h-12"></div>
+            </div>
+            <div className="border-t border-slate-400 pt-4">
+              <p className="text-xs font-bold uppercase text-slate-400">Namnteckning (Behörig firmatecknare)</p>
+              <div className="h-12"></div>
+              <p className="text-[10px] text-slate-500 mt-2 italic">Namnförtydligande:</p>
+            </div>
+          </div>
+
+          <div className="pt-8 opacity-50">
+            <h2 className="text-sm font-bold border-b mb-4 pt-4">Bilaga: Identifierade Revisionspunkter</h2>
+            <table className="w-full text-left text-[10px]">
+              <thead>
+                <tr className="border-b">
+                  <th className="py-2">Företag</th>
+                  <th className="py-2">Bransch</th>
+                  <th className="py-2 text-right">Potential</th>
+                </tr>
+              </thead>
+              <tbody>
+                {LEADS.slice(0, 10).map(lead => (
+                  <tr key={lead.id} className="border-b">
+                    <td className="py-2 font-bold">{lead.name}</td>
+                    <td className="py-2">{lead.industry}</td>
+                    <td className="py-2 text-right text-emerald-700">{lead.potential}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="fixed bottom-12 left-12 right-12 text-[8px] text-slate-400 border-t pt-4 flex justify-between">
+            <span>EnergiRevision — System Generated Report ID: {Math.random().toString(36).substring(7).toUpperCase()}</span>
+            <span>Sida 1 av 1</span>
+          </div>
+        </div>
+      </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media print {
+          body * { visibility: hidden; }
+          .print\\:block, .print\\:block * { visibility: visible; }
+          .print\\:block { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white !important; }
+          header, nav, aside, button, .no-print { display: none !important; }
+          main { padding: 0 !important; margin: 0 !important; }
+        }
+      `}} />
     </div>
   );
 }
