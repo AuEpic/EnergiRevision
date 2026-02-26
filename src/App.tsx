@@ -396,7 +396,7 @@ function LeadsView() {
             onClick={exportToPdf}
             className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg text-sm font-bold hover:bg-black transition-all shadow-lg shadow-slate-200"
           >
-            <Download size={16} /> Exportera för Fullmakt
+            <Download size={16} /> Exportera Leads (PDF)
           </button>
           <div className="relative w-full md:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
@@ -869,67 +869,75 @@ export default function App() {
         </main>
       </div>
 
-      {/* --- Print Protected Content / Fullmakt --- */}
-      <div className="hidden print:block fixed inset-0 bg-white p-12 text-slate-900 z-[9999]">
-        <div className="max-w-3xl mx-auto space-y-8">
-          <div className="flex justify-between items-start border-b-2 border-slate-900 pb-6">
+      {/* --- Print View: Lead Prospecting Report --- */}
+      <div className="hidden print:block fixed inset-0 bg-white p-10 text-slate-900 z-[9999]">
+        <div className="max-w-4xl mx-auto space-y-6">
+
+          {/* Header */}
+          <div className="flex justify-between items-start border-b-2 border-emerald-600 pb-5">
             <div>
-              <h1 className="text-3xl font-bold uppercase tracking-tighter">Fullmakt & Uppdragsbekräftelse</h1>
-              <p className="text-slate-500 mt-1">EnergiRevision / OpenRevision Framework</p>
+              <h1 className="text-3xl font-extrabold uppercase tracking-tight text-slate-900">Lead Prospecting Report</h1>
+              <p className="text-slate-500 mt-1 text-sm">EnergiRevision — Genererat {new Date().toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
             </div>
-            <TrendingUp size={48} className="text-emerald-600" />
-          </div>
-
-          <div className="space-y-4 text-justify">
-            <p className="font-bold text-lg">Härmed befullmäktigas EnergiRevision att för undertecknat bolags räkning:</p>
-            <ol className="list-decimal pl-5 space-y-2">
-              <li>Inhämta uppgifter från Skatteverket rörande bolagets skattekonto, arbetsgivardeklarationer och beskattningsbeslut.</li>
-              <li>Genomföra teknisk revision av historiska energiskatter, FoU-avdrag och momshantering.</li>
-              <li>Biträda bolaget i kontakt med myndigheter för återvinning av felaktigt inbetald skatt.</li>
-            </ol>
-            <p>
-              Denna fullmakt gäller i 12 månader från undertecknande eller tills den skriftligen återkallas.
-              Ersättning utgår enligt principen "No Cure - No Pay" (25% av återvunnet belopp) om inget annat avtalats.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-12 pt-12">
-            <div className="border-t border-slate-400 pt-4">
-              <p className="text-xs font-bold uppercase text-slate-400">Ort & Datum</p>
-              <div className="h-12"></div>
-            </div>
-            <div className="border-t border-slate-400 pt-4">
-              <p className="text-xs font-bold uppercase text-slate-400">Namnteckning (Behörig firmatecknare)</p>
-              <div className="h-12"></div>
-              <p className="text-[10px] text-slate-500 mt-2 italic">Namnförtydligande:</p>
+            <div className="text-right">
+              <TrendingUp size={40} className="text-emerald-600 ml-auto" />
+              <p className="text-[10px] text-slate-400 mt-1">OpenRevision Framework</p>
             </div>
           </div>
 
-          <div className="pt-8 opacity-50">
-            <h2 className="text-sm font-bold border-b mb-4 pt-4">Bilaga: Identifierade Revisionspunkter</h2>
-            <table className="w-full text-left text-[10px]">
+          {/* Summary stats */}
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div className="border border-slate-200 rounded-lg p-3">
+              <p className="text-2xl font-bold text-emerald-600">{LEADS.length}</p>
+              <p className="text-xs text-slate-500 uppercase tracking-wide mt-1">Totala Leads</p>
+            </div>
+            <div className="border border-slate-200 rounded-lg p-3">
+              <p className="text-2xl font-bold text-emerald-600">{LEADS.filter(l => l.score >= 9).length}</p>
+              <p className="text-xs text-slate-500 uppercase tracking-wide mt-1">Score 9–10 (Hög Potential)</p>
+            </div>
+            <div className="border border-slate-200 rounded-lg p-3">
+              <p className="text-2xl font-bold text-emerald-600">{LEADS.filter(l => l.status === 'Ready for Audit').length}</p>
+              <p className="text-xs text-slate-500 uppercase tracking-wide mt-1">Klara för Revision</p>
+            </div>
+          </div>
+
+          {/* Leads Table */}
+          <div>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-3 border-b pb-2">Identifierade Prospekt</h2>
+            <table className="w-full text-left text-[11px]">
               <thead>
-                <tr className="border-b">
-                  <th className="py-2">Företag</th>
-                  <th className="py-2">Bransch</th>
-                  <th className="py-2 text-right">Potential</th>
+                <tr className="bg-slate-50 text-slate-600 uppercase text-[9px] tracking-wider">
+                  <th className="py-2 px-2">ID</th>
+                  <th className="py-2 px-2">Bolag</th>
+                  <th className="py-2 px-2">Bransch</th>
+                  <th className="py-2 px-2">Personalkostnad</th>
+                  <th className="py-2 px-2">Status</th>
+                  <th className="py-2 px-2 text-right">Score</th>
+                  <th className="py-2 px-2 text-right">Estimerad Potential</th>
                 </tr>
               </thead>
               <tbody>
-                {LEADS.slice(0, 10).map(lead => (
-                  <tr key={lead.id} className="border-b">
-                    <td className="py-2 font-bold">{lead.name}</td>
-                    <td className="py-2">{lead.industry}</td>
-                    <td className="py-2 text-right text-emerald-700">{lead.potential}</td>
+                {LEADS.map((lead, i) => (
+                  <tr key={lead.id} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
+                    <td className="py-2 px-2 text-slate-400">{lead.id}</td>
+                    <td className="py-2 px-2 font-bold text-slate-900">{lead.name}</td>
+                    <td className="py-2 px-2 text-slate-600">{lead.industry}</td>
+                    <td className="py-2 px-2 text-slate-600">{lead.personnelCost}</td>
+                    <td className="py-2 px-2">
+                      <span className="px-2 py-0.5 rounded-full text-[8px] font-bold bg-emerald-100 text-emerald-700">{lead.status}</span>
+                    </td>
+                    <td className="py-2 px-2 text-right font-bold text-slate-800">{lead.score}/10</td>
+                    <td className="py-2 px-2 text-right font-bold text-emerald-700">{lead.potential}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
 
-          <div className="fixed bottom-12 left-12 right-12 text-[8px] text-slate-400 border-t pt-4 flex justify-between">
-            <span>EnergiRevision — System Generated Report ID: {Math.random().toString(36).substring(7).toUpperCase()}</span>
-            <span>Sida 1 av 1</span>
+          {/* Footer */}
+          <div className="fixed bottom-8 left-10 right-10 text-[8px] text-slate-400 border-t pt-3 flex justify-between">
+            <span>EnergiRevision — Konfidentiellt — Rapport-ID: {Math.random().toString(36).substring(2, 8).toUpperCase()}</span>
+            <span>Sida 1 av 1 · {new Date().toLocaleDateString('sv-SE')}</span>
           </div>
         </div>
       </div>
@@ -938,9 +946,10 @@ export default function App() {
         @media print {
           body * { visibility: hidden; }
           .print\\:block, .print\\:block * { visibility: visible; }
-          .print\\:block { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white !important; }
+          .print\\:block { position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: white !important; }
           header, nav, aside, button, .no-print { display: none !important; }
           main { padding: 0 !important; margin: 0 !important; }
+          @page { margin: 0; }
         }
       `}} />
     </div>
