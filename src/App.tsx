@@ -2,10 +2,11 @@ import {
   Activity, BarChart3, Bot, Building2, Car, CheckSquare, Database, Download,
   FileSignature, FileText, Filter, Layers, Menu, Printer, RefreshCw, Scale,
   Search, Server, Settings, ShieldAlert, ShieldCheck, TrendingUp, Upload,
-  Users, X, Zap, Trash2, Clock, FileUp, File
+  Users, X, Zap, Trash2, Clock, FileUp, File, MessageCircle, Send
 } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { GoogleGenAI } from '@google/genai';
 
 // ── Types ────────────────────────────────────────────────────────────
 interface Lead {
@@ -31,15 +32,31 @@ const api = {
 };
 
 // ── Hooks ────────────────────────────────────────────────────────────
-function useApiData<T>(path: string, fallback: T, refreshKey: number) {
-  const [data, setData] = useState<T>(fallback);
+function useStaticData() {
+  const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  useEffect(() => {
+
+  const fetchData = useCallback(async () => {
     setLoading(true);
-    api.get(path).then(d => { setData(d); setError(null); }).catch(e => setError(e.message)).finally(() => setLoading(false));
-  }, [path, refreshKey]);
-  return { data, loading, error };
+    try {
+      const res = await fetch('/data.json');
+      if (!res.ok) throw new Error('data.json not found');
+      const json = await res.json();
+      setData(json);
+      setError(null);
+    } catch (e: any) {
+      setError(e.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return { data, loading, error, refetch: fetchData };
 }
 
 // ── Sync Status Indicator ────────────────────────────────────────────
@@ -206,7 +223,17 @@ function LeadsView({ leads, onRefresh }: { leads: Lead[]; onRefresh: () => void 
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const filtered = useMemo(() => leads.filter(l => !searchTerm || l.name.toLowerCase().includes(searchTerm.toLowerCase()) || l.sni.includes(searchTerm) || l.industry.toLowerCase().includes(searchTerm.toLowerCase())), [leads, searchTerm]);
+  const [categoryFilter, setCategoryFilter] = useState<string>('all');
+
+  const filtered = useMemo(() => {
+    let result = leads;
+    if (categoryFilter === 'tech') result = result.filter(l => l.sni.includes('620') || l.industry.toLowerCase().includes('it') || l.industry.toLowerCase().includes('tech'));
+    if (categoryFilter === 'industry') result = result.filter(l => l.sni.includes('10') || l.sni.includes('20') || l.sni.includes('30') || l.industry.toLowerCase().includes('tillverkning') || l.industry.toLowerCase().includes('industri'));
+    if (categoryFilter === 'validated') result = result.filter(l => l.status === 'Ready for Audit' || l.tags.includes('Validated'));
+
+    return result.filter(l => !searchTerm || l.name.toLowerCase().includes(searchTerm.toLowerCase()) || l.sni.includes(searchTerm) || l.industry.toLowerCase().includes(searchTerm.toLowerCase()));
+  }, [leads, searchTerm, categoryFilter]);
+
   const chartData = useMemo(() => [...filtered].sort((a, b) => b.score - a.score).slice(0, 10).map(l => ({ name: l.name.length > 15 ? l.name.substring(0, 15) + '...' : l.name, fullName: l.name, score: l.score })), [filtered]);
   const getScoreColor = (score: number) => score >= 10 ? '#8b5cf6' : score >= 8 ? '#10b981' : score >= 6 ? '#f59e0b' : '#64748b';
   const handleDelete = async (id: string) => { await api.del(`/api/leads/${id}`); setShowDeleteConfirm(null); setSelectedLead(null); onRefresh(); };
@@ -215,9 +242,17 @@ function LeadsView({ leads, onRefresh }: { leads: Lead[]; onRefresh: () => void 
     <div className="space-y-6">
       <header className="flex flex-col md:flex-row md:justify-between md:items-end gap-4">
         <div><h1 className="text-2xl font-semibold text-slate-900">Prospektering & Lead Scoring</h1><p className="text-slate-500 mt-1">{leads.length} leads från databasen.</p></div>
-        <div className="flex gap-3">
-          <button onClick={() => window.print()} className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg text-sm font-bold hover:bg-black transition-all shadow-lg shadow-slate-200"><Download size={16} /> Exportera Leads (PDF)</button>
-          <div className="relative w-full md:w-64"><Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} /><input type="text" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Sök bolag eller SNI..." className="pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 w-full" /></div>
+        <div className="flex flex-col gap-3">
+          <div className="flex gap-2 mb-1">
+            <button onClick={() => setCategoryFilter('all')} className={`px-3 py-1 text-xs font-bold rounded-full ${categoryFilter === 'all' ? 'bg-slate-800 text-white' : 'bg-slate-200 text-slate-600 hover:bg-slate-300'}`}>Alla</button>
+            <button onClick={() => setCategoryFilter('validated')} className={`px-3 py-1 text-xs font-bold rounded-full ${categoryFilter === 'validated' ? 'bg-emerald-600 text-white' : 'bg-slate-200 text-slate-600 hover:bg-slate-300'}`}>Validerade (Klarmarkerade)</button>
+            <button onClick={() => setCategoryFilter('tech')} className={`px-3 py-1 text-xs font-bold rounded-full ${categoryFilter === 'tech' ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-600 hover:bg-slate-300'}`}>Tech / FoU</button>
+            <button onClick={() => setCategoryFilter('industry')} className={`px-3 py-1 text-xs font-bold rounded-full ${categoryFilter === 'industry' ? 'bg-amber-600 text-white' : 'bg-slate-200 text-slate-600 hover:bg-slate-300'}`}>Industri / Energi</button>
+          </div>
+          <div className="flex gap-3">
+            <button onClick={() => window.print()} className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg text-sm font-bold hover:bg-black transition-all shadow-lg shadow-slate-200"><Download size={16} /> Exportera Leads (PDF)</button>
+            <div className="relative w-full md:w-64"><Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} /><input type="text" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Sök bolag eller SNI..." className="pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 w-full" /></div>
+          </div>
         </div>
       </header>
       <div className="grid lg:grid-cols-3 gap-6">
@@ -393,23 +428,111 @@ function ArchitectureView() { return (<div className="space-y-6"><header><h1 cla
 
 function EngineView({ stats }: { stats: DashboardStats | null }) { return (<div className="space-y-6"><header><h1 className="text-2xl font-semibold text-slate-900">Core Engine (macOS)</h1><p className="text-slate-500 mt-1">Python-baserad lead scoring och regelmotor.</p></header><div className="bg-slate-900 p-6 rounded-2xl font-mono text-sm space-y-2"><div className="text-emerald-400">[SYSTEM ONLINE] — M4 Neural Engine active — SQLite DB Ready</div><div className="text-slate-400">rules_engine.py  → {stats?.lastEngineRun ? '✅ Loaded' : '⏳ Idle'}</div><div className="text-slate-400">lead_scoring.py  → {stats?.lastEngineRun ? '✅ Loaded' : '⏳ Idle'}</div><div className="text-slate-400">hybrid_memory.py → ✅ Persistent</div><div className="text-slate-400">sync_to_db.py    → {stats?.lastEngineRun ? `Last run: ${stats.lastEngineRun.finished_at || 'running...'}` : 'Never run'}</div></div></div>); }
 
-function HfdView({ rulings }: { rulings: HfdRuling[] }) { return (<div className="space-y-6"><header><h1 className="text-2xl font-semibold text-slate-900">HFD-Bevakning</h1><p className="text-slate-500 mt-1">Prejudicerande domar för skatteåtervinning.</p></header><div className="grid gap-4">{rulings.map(r => (<div key={r.id} className="bg-white p-5 rounded-xl border border-slate-200 hover:shadow-md transition-shadow"><div className="flex items-center gap-2 mb-2"><h3 className="font-bold text-slate-900">{r.title}</h3>{r.tag && <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-600">{r.tag}</span>}</div><p className="text-sm text-slate-500">{r.desc}</p></div>))}</div></div>); }
+function HfdView({ rulings }: { rulings: HfdRuling[] }) { return (<div className="space-y-6"><header><h1 className="text-2xl font-semibold text-slate-900">HFD-Bevakning</h1><p className="text-slate-500 mt-1">Prejudicerande domar för skatteåtervinning.</p></header><div className="grid gap-4">{(rulings || []).map(r => (<div key={r.id} className="bg-white p-5 rounded-xl border border-slate-200 hover:shadow-md transition-shadow"><div className="flex items-center gap-2 mb-2"><h3 className="font-bold text-slate-900">{r.title}</h3>{r.tag && <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-600">{r.tag}</span>}</div><p className="text-sm text-slate-500">{r.desc}</p></div>))}</div></div>); }
+
+// ── AI Chat Widget ───────────────────────────────────────────────────
+
+const gemini = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+function AiChatWidget() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState<{ role: 'user' | 'model', text: string }[]>([
+    { role: 'model', text: 'Hej! Jag är Agent Zero (Lite). Hur kan jag hjälpa dig med prospektering, HFD-domar eller skatteåtervinning idag?' }
+  ]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const sendMessage = async () => {
+    if (!input.trim() || loading) return;
+    const userMsg = input.trim();
+    setInput('');
+    setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
+    setLoading(true);
+
+    try {
+      let prompt = "Tidigare konversation:\\n";
+      messages.forEach(m => prompt += `${m.role === 'user' ? 'Användare' : 'Agent Zero'}: ${m.text}\\n`);
+      prompt += `\\nAnvändare: ${userMsg}\\nAgent Zero:`;
+
+      const response = await gemini.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: prompt,
+        config: {
+          systemInstruction: "Du är Agent Zero, en AI-assistent integrerad i OpenRevision. Du är expert på svensk skatteåtervinning (FoU-avdrag, energiskatt, fastighetsmoms m.m.). Du svarar kortfattat, professionellt och insiktsfullt på svenska.",
+        }
+      });
+
+      setMessages(prev => [...prev, { role: 'model', text: response.text || 'Kunde inte generera svar.' }]);
+    } catch (e: any) {
+      setMessages(prev => [...prev, { role: 'model', text: `Ett fel uppstod vid kontakt med Gemini API: ${e.message}` }]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-6 right-6 w-14 h-14 bg-emerald-600 rounded-full flex items-center justify-center text-white shadow-xl hover:bg-emerald-500 transition-colors z-50">
+          <MessageCircle size={28} />
+        </button>
+      )}
+
+      {isOpen && (
+        <div className="fixed bottom-6 right-6 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-slate-200 z-50 flex flex-col overflow-hidden" style={{ height: '500px', maxHeight: '80vh' }}>
+          <div className="bg-slate-900 p-4 flex justify-between items-center text-white">
+            <div className="flex items-center gap-2 font-bold"><Bot size={18} className="text-emerald-500" /> Agent Zero (Lite)</div>
+            <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-white"><X size={18} /></button>
+          </div>
+          <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50">
+            {messages.map((m, i) => (
+              <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[85%] p-3 rounded-2xl text-sm ${m.role === 'user' ? 'bg-emerald-600 text-white rounded-br-sm' : 'bg-white border border-slate-200 text-slate-800 rounded-bl-sm whitespace-pre-wrap'}`}>
+                  {m.text}
+                </div>
+              </div>
+            ))}
+            {loading && <div className="text-xs text-slate-400 flex items-center gap-2"><RefreshCw size={12} className="animate-spin" /> Analyserar...</div>}
+          </div>
+          <div className="p-3 bg-white border-t border-slate-200">
+            <div className="flex items-center gap-2 bg-slate-100 rounded-xl px-3 py-2">
+              <input
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && sendMessage()}
+                placeholder="Fråga om skatteåtervinning..."
+                className="flex-1 bg-transparent text-sm focus:outline-none placeholder-slate-400"
+              />
+              <button onClick={sendMessage} disabled={loading || !input.trim()} className="text-emerald-600 disabled:text-slate-400">
+                <Send size={18} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
 
 // ── Main App ─────────────────────────────────────────────────────────
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [refreshKey, setRefreshKey] = useState(0);
-  const doRefresh = useCallback(() => setRefreshKey(k => k + 1), []);
 
-  const { data: leadsData } = useApiData<{ leads: Lead[] }>('/api/leads', { leads: [] }, refreshKey);
-  const { data: statsData } = useApiData<DashboardStats | null>('/api/stats', null, refreshKey);
-  const { data: activityData } = useApiData<{ entries: ActivityEntry[] }>('/api/activity', { entries: [] }, refreshKey);
-  const { data: hfdData } = useApiData<{ rulings: HfdRuling[] }>('/api/hfd-rulings', { rulings: [] }, refreshKey);
-  const { data: agentsData } = useApiData<{ agents: Agent[] }>('/api/agents', { agents: [] }, refreshKey);
+  const { data, loading, refetch } = useStaticData();
 
-  // Auto-refresh every 60 seconds
-  useEffect(() => { const iv = setInterval(doRefresh, 60000); return () => clearInterval(iv); }, [doRefresh]);
+  // Auto-refresh every 60 seconds (useful mostly when running locally)
+  useEffect(() => { const iv = setInterval(refetch, 60000); return () => clearInterval(iv); }, [refetch]);
+
+  if (loading && !data) return <div className="h-screen flex items-center justify-center text-slate-500">Laddar Data (data.json)...</div>;
+
+  const leadsData = data?.leads || [];
+  const statsData = data?.stats || null;
+  const activityData = data?.activity?.entries || [];
+  const hfdData = data?.hfd_rulings?.rulings || [];
+  const agentsData = data?.agents?.agents || [];
 
   return (
     <div className="flex h-screen bg-slate-50 font-sans text-slate-900 overflow-hidden">
@@ -421,7 +544,7 @@ export default function App() {
             <div className="hidden lg:flex items-center gap-3">
               <SyncIndicator lastRun={statsData?.lastEngineRun ?? null} />
               <span className="text-slate-300">·</span>
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest"><Activity size={14} className="text-emerald-500" />System Health: Optimal</div>
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest"><Activity size={14} className={statsData?.lastEngineRun?.status === 'success' ? "text-emerald-500" : "text-amber-500"} />System Health: {statsData?.lastEngineRun?.status === 'success' ? 'Online' : 'Pending'}</div>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -430,17 +553,18 @@ export default function App() {
           </div>
         </header>
         <main className="flex-1 overflow-y-auto p-4 lg:p-8">
-          {activeTab === 'dashboard' && <DashboardView stats={statsData} activity={activityData.entries} refreshKey={refreshKey} onRefresh={doRefresh} />}
-          {activeTab === 'leads' && <LeadsView leads={leadsData.leads} onRefresh={doRefresh} />}
-          {activeTab === 'agents' && <AgentsView agents={agentsData.agents} />}
+          {activeTab === 'dashboard' && <DashboardView stats={statsData} activity={activityData} refreshKey={0} onRefresh={refetch} />}
+          {activeTab === 'leads' && <LeadsView leads={leadsData} onRefresh={refetch} />}
+          {activeTab === 'agents' && <AgentsView agents={agentsData} />}
           {activeTab === 'integrations' && <IntegrationsView />}
           {activeTab === 'checklist' && <ChecklistView />}
-          {activeTab === 'hfd' && <HfdView rulings={hfdData.rulings} />}
+          {activeTab === 'hfd' && <HfdView rulings={hfdData} />}
           {activeTab === 'onboarding' && <OnboardingView />}
           {activeTab === 'architecture' && <ArchitectureView />}
           {activeTab === 'engine' && <EngineView stats={statsData} />}
         </main>
       </div>
+      <AiChatWidget />
     </div>
   );
 }
