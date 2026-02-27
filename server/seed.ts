@@ -15,98 +15,10 @@ function seed() {
 
     console.log('🌱 Seeding OpenRevision database...');
 
-    // ── Leads (from existing App.tsx hardcoded data) ───────────────────
-    const SEED_LEADS = [
-        {
-            id: 'L001',
-            name: 'Electrum Automation AB',
-            sni: '62010 / 27120',
-            industry: 'Elartiklar & Automation',
-            personnel_cost: '18.4 MSEK',
-            rd_deduction: '0 SEK',
-            score: 10,
-            status: 'Ready for Audit',
-            tags: ['Addtech', 'FoU-avdrag', 'Hög Potential'],
-            potential: '2.4 - 3.8 MSEK',
-        },
-        {
-            id: 'L002',
-            name: 'Sleip AI',
-            sni: '62010',
-            industry: 'AI Plattform / Tech',
-            personnel_cost: '12.3 MSEK',
-            rd_deduction: '0 SEK',
-            score: 10,
-            status: 'Ready for Audit',
-            tags: ['AI-utveckling', 'FoU-avdrag'],
-            potential: '1.2 - 2.0 MSEK',
-        },
-        {
-            id: 'L003',
-            name: 'SkiStar AB',
-            sni: '93290',
-            industry: 'Fritidsanläggningar',
-            personnel_cost: '450 MSEK',
-            rd_deduction: 'N/A',
-            score: 9,
-            status: 'API Verified',
-            tags: ['Energiskatt', 'Snötillverkning', 'HFD 2022 ref. 38'],
-            potential: '5.2 MSEK',
-        },
-        {
-            id: 'L004',
-            name: 'Crescocito AB',
-            sni: '71120',
-            industry: 'Teknisk konsulting',
-            personnel_cost: '8.2 MSEK',
-            rd_deduction: '0 SEK',
-            score: 9,
-            status: 'Screening',
-            tags: ['Teknisk utveckling', 'FoU-avdrag'],
-            potential: '0.8 - 1.2 MSEK',
-        },
-        {
-            id: 'L005',
-            name: 'C. Gunnarssons Verkstads AB',
-            sni: '28410',
-            industry: 'Maskintillverkning',
-            personnel_cost: '22.1 MSEK',
-            rd_deduction: 'Partial',
-            score: 9,
-            status: 'Screening',
-            tags: ['Maskinkonstruktion', 'FoU-avdrag'],
-            potential: '1.5 MSEK',
-        },
-        {
-            id: 'L006',
-            name: 'Kry International AB',
-            sni: '62010',
-            industry: 'Digital Hälsa',
-            personnel_cost: '145 MSEK',
-            rd_deduction: 'Partial',
-            score: 8,
-            status: 'Deep Dive',
-            tags: ['Plattformsutveckling', 'FoU-avdrag'],
-            potential: '4.5 - 8.0 MSEK',
-        },
-        {
-            id: 'L007',
-            name: 'Addtech Nordic AB',
-            sni: '70100',
-            industry: 'Huvudkontor / Koncern',
-            personnel_cost: '35.2 MSEK',
-            rd_deduction: 'N/A',
-            score: 8,
-            status: 'Screening',
-            tags: ['Energiskatt', 'Koncernmoms'],
-            potential: '1.2 MSEK',
-        },
-    ];
+    console.log('🌱 Seeding OpenRevision database...');
 
-    for (const lead of SEED_LEADS) {
-        upsertLead({ ...lead, source: 'seed' });
-    }
-    console.log(`  ✅ ${SEED_LEADS.length} leads seeded`);
+    // Leads are now strictly pulled from the engine via sync_to_db.py
+
 
     // ── HFD Rulings ───────────────────────────────────────────────────
     const HFD_RULINGS = [
