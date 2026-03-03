@@ -1,10 +1,16 @@
 node_modules/
-build/
+.venv/
+venv/
 dist/
-coverage/
+build/
+__pycache__/
+*.pyc
 .DS_Store
+.env
 *.log
-.env*
-!.env.example
-data/
-
+AGENTZERO-imac/
+A Volumes/
+DEV-m4
+EnergiRevision/node_modules/
+EnergiRevision/dist/
+EnergiRevision/__pycache__/
