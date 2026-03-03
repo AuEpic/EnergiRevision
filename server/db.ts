@@ -51,6 +51,16 @@ export function getDb(): Database.Database {
       potential      TEXT DEFAULT '',
       notes          TEXT DEFAULT '',
       source         TEXT DEFAULT 'manual',   -- 'manual' | 'engine' | 'seed'
+      energy_consumption_kwh  REAL DEFAULT 0,
+      tax_rate_current        REAL DEFAULT 0,        -- öre/kWh currently paid
+      tax_rate_eligible       REAL DEFAULT 0,        -- öre/kWh they should pay
+      recovery_window_years   INTEGER DEFAULT 0,
+      confidence_level        TEXT DEFAULT 'low',     -- 'low' | 'medium' | 'high'
+      employee_count          INTEGER DEFAULT 0,
+      revenues_msek           REAL DEFAULT 0,
+      detected_patterns       TEXT DEFAULT '[]',      -- JSON array of pattern IDs
+      recommended_agents      TEXT DEFAULT '[]',      -- JSON array of agent IDs
+      scoring_breakdown       TEXT DEFAULT '[]',      -- JSON array of scoring details
       created_at     TEXT DEFAULT (datetime('now')),
       updated_at     TEXT DEFAULT (datetime('now')),
       deleted_at     TEXT DEFAULT NULL        -- soft-delete timestamp
@@ -96,12 +106,30 @@ export function getDb(): Database.Database {
     );
 
     CREATE TABLE IF NOT EXISTS agents (
-      id    TEXT PRIMARY KEY,
-      name  TEXT NOT NULL,
-      emoji TEXT DEFAULT '',
-      focus TEXT DEFAULT '',
-      color TEXT DEFAULT '',
-      bg    TEXT DEFAULT ''
+      id          TEXT PRIMARY KEY,
+      name        TEXT NOT NULL,
+      emoji       TEXT DEFAULT '',
+      focus       TEXT DEFAULT '',
+      color       TEXT DEFAULT '',
+      bg          TEXT DEFAULT '',
+      category    TEXT DEFAULT '',
+      data_sources TEXT DEFAULT '[]',     -- JSON array of data source names
+      triggers    TEXT DEFAULT '[]',      -- JSON array of trigger conditions
+      workflow_steps TEXT DEFAULT '[]',   -- JSON array of workflow step descriptions
+      escalation_criteria TEXT DEFAULT '',
+      output_format TEXT DEFAULT ''
+    );
+
+    CREATE TABLE IF NOT EXISTS detection_patterns (
+      id                    TEXT PRIMARY KEY,
+      name                  TEXT NOT NULL,
+      description           TEXT DEFAULT '',
+      category              TEXT DEFAULT '',
+      applicable_hfd_rulings TEXT DEFAULT '[]',  -- JSON array
+      sni_prefixes          TEXT DEFAULT '[]',   -- JSON array
+      agent_id              TEXT DEFAULT '',
+      estimated_recovery_range TEXT DEFAULT '',
+      retroactive_years     INTEGER DEFAULT 0
     );
   `);
 
@@ -123,6 +151,16 @@ export interface Lead {
     potential: string;
     notes: string;
     source: string;
+    energy_consumption_kwh: number;
+    tax_rate_current: number;
+    tax_rate_eligible: number;
+    recovery_window_years: number;
+    confidence_level: string;
+    employee_count: number;
+    revenues_msek: number;
+    detected_patterns: string[];
+    recommended_agents: string[];
+    scoring_breakdown: Record<string, unknown>[];
     created_at: string;
     updated_at: string;
     deleted_at: string | null;
@@ -134,7 +172,13 @@ export function getAllLeads(): Lead[] {
     const rows = db.prepare(
         `SELECT * FROM leads WHERE deleted_at IS NULL ORDER BY score DESC, name ASC`
     ).all() as any[];
-    return rows.map(r => ({ ...r, tags: JSON.parse(r.tags || '[]') }));
+    return rows.map(r => ({
+        ...r,
+        tags: JSON.parse(r.tags || '[]'),
+        detected_patterns: JSON.parse(r.detected_patterns || '[]'),
+        recommended_agents: JSON.parse(r.recommended_agents || '[]'),
+        scoring_breakdown: JSON.parse(r.scoring_breakdown || '[]'),
+    }));
 }
 
 /** Get a single lead by ID. */
@@ -142,7 +186,13 @@ export function getLeadById(id: string): Lead | null {
     const db = getDb();
     const row = db.prepare(`SELECT * FROM leads WHERE id = ?`).get(id) as any;
     if (!row) return null;
-    return { ...row, tags: JSON.parse(row.tags || '[]') };
+    return {
+        ...row,
+        tags: JSON.parse(row.tags || '[]'),
+        detected_patterns: JSON.parse(row.detected_patterns || '[]'),
+        recommended_agents: JSON.parse(row.recommended_agents || '[]'),
+        scoring_breakdown: JSON.parse(row.scoring_breakdown || '[]'),
+    };
 }
 
 /**
@@ -315,7 +365,25 @@ export function getAllHfdRulings() {
 
 export function getAllAgents() {
     const db = getDb();
-    return db.prepare(`SELECT * FROM agents`).all();
+    const rows = db.prepare(`SELECT * FROM agents`).all() as any[];
+    return rows.map(r => ({
+        ...r,
+        data_sources: JSON.parse(r.data_sources || '[]'),
+        triggers: JSON.parse(r.triggers || '[]'),
+        workflow_steps: JSON.parse(r.workflow_steps || '[]'),
+    }));
+}
+
+// ── Detection Patterns ───────────────────────────────────────────────
+
+export function getAllDetectionPatterns() {
+    const db = getDb();
+    const rows = db.prepare(`SELECT * FROM detection_patterns`).all() as any[];
+    return rows.map(r => ({
+        ...r,
+        applicable_hfd_rulings: JSON.parse(r.applicable_hfd_rulings || '[]'),
+        sni_prefixes: JSON.parse(r.sni_prefixes || '[]'),
+    }));
 }
 
 // ── Stats ────────────────────────────────────────────────────────────
@@ -337,6 +405,10 @@ export function getDashboardStats() {
         if (match) totalPotential += parseFloat(match[1]);
     }
 
+    const highConfidence = (db.prepare(`SELECT COUNT(*) as c FROM leads WHERE deleted_at IS NULL AND confidence_level = 'high'`).get() as any)?.c ?? 0;
+    const detectionPatternCount = (db.prepare(`SELECT COUNT(*) as c FROM detection_patterns`).get() as any)?.c ?? 0;
+    const agentCount = (db.prepare(`SELECT COUNT(*) as c FROM agents`).get() as any)?.c ?? 0;
+
     return {
         totalLeads,
         topScoreLeads,
@@ -344,6 +416,9 @@ export function getDashboardStats() {
         totalFiles,
         totalPotentialMSEK: Math.round(totalPotential * 10) / 10,
         lastEngineRun: lastRun,
+        highConfidenceLeads: highConfidence,
+        detectionPatternCount,
+        agentCount,
     };
 }
 
