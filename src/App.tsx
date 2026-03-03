@@ -434,7 +434,12 @@ function HfdView({ rulings }: { rulings: HfdRuling[] }) { return (<div className
 
 // ── AI Chat Widget ───────────────────────────────────────────────────
 
-const gemini = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+let gemini: GoogleGenAI | null = null;
+try {
+  gemini = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
+} catch {
+  // Gemini API key not configured — chat widget will show a friendly error
+}
 
 function AiChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -456,6 +461,7 @@ function AiChatWidget() {
       messages.forEach(m => prompt += `${m.role === 'user' ? 'Användare' : 'Agent Zero'}: ${m.text}\\n`);
       prompt += `\\nAnvändare: ${userMsg}\\nAgent Zero:`;
 
+      if (!gemini) throw new Error('Gemini API-nyckel saknas. Sätt VITE_GEMINI_API_KEY i .env.');
       const response = await gemini.models.generateContent({
         model: 'gemini-2.5-flash',
         contents: prompt,
