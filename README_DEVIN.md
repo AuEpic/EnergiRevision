@@ -33,6 +33,44 @@ nlm list notebooks
 - "How does the lead scoring system work?"
 - "What are the Swedish tax recovery rules?"
 
+## Qdrant Cloud - Vector Database
+
+All knowledge är vektoriserad och redo för semantic search.
+
+**Qdrant Config:**
+- **Endpoint:** https://4edeb459-21c9-4b63-a5e2-0a136c5b136f.eu-west-1-0.aws.cloud.qdrant.io
+- **API Key:** `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.Y0gaLbritNkLXHbP0xRmlS-vism0ZYqtRS4ytS7VMnQ`
+- **Collection:** `EnergiRevision_Knowledge`
+- **Vektor-storlek:** 384
+- **Points:** 285 vektorer
+
+### Använda Qdrant i Python
+
+```python
+from qdrant_client import QdrantClient
+
+client = QdrantClient(
+    url="https://4edeb459-21c9-4b63-a5e2-0a136c5b136f.eu-west-1-0.aws.cloud.qdrant.io:6333",
+    api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.Y0gaLbritNkLXHbP0xRmlS-vism0ZYqtRS4ytS7VMnQ"
+)
+
+# Sök
+results = client.search(
+    collection_name="EnergiRevision_Knowledge",
+    query_vector=your_embedding,
+    limit=5
+)
+```
+
+### Uppdatera knowledge base
+
+```bash
+# Kör vektoriseringsscriptet
+cd /Users/imacpro/Documents/DEV-imac
+source .venv_vectorize/bin/activate
+python vectorize_knowledge.py
+```
+
 ## Kör igång
 
 ```bash
