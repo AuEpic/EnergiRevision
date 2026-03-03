@@ -1,5 +1,26 @@
 # Devin-instruktioner för EnergiRevision
 
+## Repositories och Live Site
+
+### Var finns vad?
+
+| Typ | Plats | Beskrivning |
+|-----|-------|--------------|
+| **Live Site** | https://energirevision.vercel.app | Frontend deployad på Vercel |
+| **GitHub (produktion)** | https://github.com/finasteos/EnergiRevision | Original-repo med deployed kod |
+| **GitHub (utveckling)** | https://github.com/AuEpic/EnergiRevision | Fullständigt repo med all dokumentation, NotebookLM-integration, Qdrant mm |
+
+### Varför dela upp?
+
+- **finasteos/EnergiRevision** - Ansluten till Vercel för produktions-deploy. Innehåller endast kod som behövs för att bygga och köra webben.
+- **AuEpic/EnergiRevision** - Innehåller ALLT: dokumentation, NotebookLM-integration, Qdrant-vektorisering, AGENTS.md, SOUL.md, SKILLS.md etc. Detta är avsett för Devin och framtida utveckling.
+
+### Arbetsflöde
+
+1. **Utveckling** → Arbeta i AuEpic-repo (denna)
+2. **Testning** → Kör lokalt med `npm run dev`
+3. **Produktion** → När det är klart, pusha ändringar till finasteos-repo för Vercel-deploy
+
 ## Översikt
 Detta är ett skatterevisionsprojekt med:
 - **Frontend**: React 19 + Vite + Tailwind CSS
