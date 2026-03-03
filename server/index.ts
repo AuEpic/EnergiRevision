@@ -37,6 +37,7 @@ import {
     getDashboardStats,
     getAllHfdRulings,
     getAllAgents,
+    getAllDetectionPatterns,
     logActivity,
     UPLOADS_DIR,
 } from './db';
@@ -263,6 +264,17 @@ app.get('/api/agents', (_req, res) => {
     try {
         const agents = getAllAgents();
         res.json({ agents });
+    } catch (err: any) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// ── Detection Patterns ───────────────────────────────────────────────
+
+app.get('/api/detection-patterns', (_req, res) => {
+    try {
+        const patterns = getAllDetectionPatterns();
+        res.json({ patterns });
     } catch (err: any) {
         res.status(500).json({ error: err.message });
     }
