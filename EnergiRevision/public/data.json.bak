@@ -1,6 +1,4 @@
 {
-  "last_updated": "2026-03-05T11:56:46.644383",
-  "total_leads": 66,
   "leads": [
     {
       "id": "L1003",
@@ -11,9 +9,7 @@
       "rd_deduction": "",
       "score": 10,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Addtech-owned, high focus on electrification/innovation. Likely missed full 20% deduction.",
       "source": "MASTER_LEADS_LIST.md",
@@ -30,9 +26,7 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.5 - 2.8 MSEK",
       "notes": "Industrial solutions with clear technical development profile.",
       "source": "MASTER_LEADS_LIST.md",
@@ -49,9 +43,7 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Machinery development for timber handling. High headcount (45) fits perfect 6-year recovery window.",
       "source": "MASTER_LEADS_LIST.md",
@@ -68,9 +60,7 @@
       "rd_deduction": "",
       "score": 8,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "",
       "notes": "Large digital health platform. Complex projects often lead to incorrect Skatteverket assessments.",
       "source": "MASTER_LEADS_LIST.md",
@@ -87,9 +77,7 @@
       "rd_deduction": "",
       "score": 10,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Pure AI platform development. Undeniable R&D evidence.",
       "source": "MASTER_LEADS_LIST.md",
@@ -106,11 +94,9 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Snowmaking via snow cannons eligible for 0.6 \u00f6re/kWh rate. 3-year retroactive window.",
+      "notes": "Snowmaking via snow cannons eligible for 0.6 öre/kWh rate. 3-year retroactive window.",
       "source": "MASTER_LEADS_LIST.md",
       "created_at": "2026-02-27 13:20:18",
       "updated_at": "2026-03-02 13:18:38",
@@ -125,9 +111,7 @@
       "rd_deduction": "",
       "score": 8,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "",
       "notes": "Hub for 150 subsidiaries. Likely has units with mixed production/warehouse activities paying full tax.",
       "source": "MASTER_LEADS_LIST.md",
@@ -144,12 +128,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "\u00e4r **IBFD** den mest centrala externa databasen,",
-      "source": "Strategier f\u00f6r Global K\u00e4llskatte\u00e5tervinning och Skattedatabaser.md",
+      "notes": "är **IBFD** den mest centrala externa databasen,",
+      "source": "Strategier för Global Källskatteåtervinning och Skattedatabaser.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -163,12 +145,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Systemet anropar f\u00f6rst Roaring f\u00f6r att h\u00e4mta aktuell",
-      "source": "Teknisk Specifikation & S\u00e4kerhetsguide_ API-integration f\u00f6r Skatte\u00e5tervinning.md",
+      "notes": "Systemet anropar först Roaring för att hämta aktuell",
+      "source": "Teknisk Specifikation & Säkerhetsguide_ API-integration för Skatteåtervinning.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -182,12 +162,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Vid signering av fullmakt via BankID valideras",
-      "source": "Teknisk Specifikation & S\u00e4kerhetsguide_ API-integration f\u00f6r Skatte\u00e5tervinning.md",
+      "source": "Teknisk Specifikation & Säkerhetsguide_ API-integration för Skatteåtervinning.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -201,12 +179,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "F\u00f6rst efter verifierad fullmakt initieras anrop",
-      "source": "Teknisk Specifikation & S\u00e4kerhetsguide_ API-integration f\u00f6r Skatte\u00e5tervinning.md",
+      "notes": "Först efter verifierad fullmakt initieras anrop",
+      "source": "Teknisk Specifikation & Säkerhetsguide_ API-integration för Skatteåtervinning.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -220,68 +196,60 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Systemet matchar SNI-koder och",
-      "source": "Teknisk Specifikation & S\u00e4kerhetsguide_ API-integration f\u00f6r Skatte\u00e5tervinning.md",
+      "source": "Teknisk Specifikation & Säkerhetsguide_ API-integration för Skatteåtervinning.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
     },
     {
       "id": "L9431",
-      "name": "Fas 2: Ber\u00e4kning",
+      "name": "Fas 2: Beräkning",
       "sni": "",
       "industry": "Fastighet",
       "personnel_cost": "",
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Vid blandad verksamhet (t.ex. fastighets\u00e4gare",
-      "source": "Teknisk Specifikation & S\u00e4kerhetsguide_ API-integration f\u00f6r Skatte\u00e5tervinning.md",
+      "notes": "Vid blandad verksamhet (t.ex. fastighetsägare",
+      "source": "Teknisk Specifikation & Säkerhetsguide_ API-integration för Skatteåtervinning.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
     },
     {
       "id": "L4544",
-      "name": "Fas 3: Ans\u00f6kan",
+      "name": "Fas 3: Ansökan",
       "sni": "",
       "industry": "",
       "personnel_cost": "",
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Systemet genererar underlag f\u00f6r ompr\u00f6vning. Varje",
-      "source": "Teknisk Specifikation & S\u00e4kerhetsguide_ API-integration f\u00f6r Skatte\u00e5tervinning.md",
+      "notes": "Systemet genererar underlag för omprövning. Varje",
+      "source": "Teknisk Specifikation & Säkerhetsguide_ API-integration för Skatteåtervinning.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
     },
     {
       "id": "L6449",
-      "name": "\u00c4mne:",
+      "name": "Ämne:",
       "sni": "",
       "industry": "IT / Tech",
       "personnel_cost": "",
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Oidentifierad likviditetsf\u00f6rst\u00e4rkning via FoU-avdrag /",
+      "notes": "Oidentifierad likviditetsförstärkning via FoU-avdrag /",
       "source": "Blueprint for Strategic Tax Recovery Scaling.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
@@ -289,18 +257,16 @@
     },
     {
       "id": "L4775",
-      "name": "V\u00e5rt erbjudande till er:",
+      "name": "Vårt erbjudande till er:",
       "sni": "",
       "industry": "",
       "personnel_cost": "",
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "- **Retroaktiv \u00e5tervinning:** Vi kan g\u00e5 tillbaka **upp till 6 \u00e5r** och",
+      "notes": "- **Retroaktiv återvinning:** Vi kan gå tillbaka **upp till 6 år** och",
       "source": "Blueprint for Strategic Tax Recovery Scaling.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
@@ -308,16 +274,14 @@
     },
     {
       "id": "L5995",
-      "name": "Teknisk Specifikation & S\u00e4kerhetsguide:",
+      "name": "Teknisk Specifikation & Säkerhetsguide:",
       "sni": "",
       "industry": "",
       "personnel_cost": "",
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "En djuplodande rapport",
       "source": "Integration Architecture and Secure Lead Verification Strategies.md",
@@ -327,16 +291,14 @@
     },
     {
       "id": "L0875",
-      "name": "Kundpresentation om Fullmakt & S\u00e4kerhet:",
+      "name": "Kundpresentation om Fullmakt & Säkerhet:",
       "sni": "",
       "industry": "",
       "personnel_cost": "",
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Ett bildspel utformat",
       "source": "Integration Architecture and Secure Lead Verification Strategies.md",
@@ -353,12 +315,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Systemet beg\u00e4r specifika scopes f\u00f6r",
-      "source": "Teknisk integrationsplan_ Automatisering av skatte\u00e5tervinning (FoU & Moms).md",
+      "notes": "Systemet begär specifika scopes för",
+      "source": "Teknisk integrationsplan_ Automatisering av skatteåtervinning (FoU & Moms).md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -372,12 +332,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Kunden signerar en digital fullmakt d\u00e4r",
-      "source": "Teknisk integrationsplan_ Automatisering av skatte\u00e5tervinning (FoU & Moms).md",
+      "notes": "Kunden signerar en digital fullmakt där",
+      "source": "Teknisk integrationsplan_ Automatisering av skatteåtervinning (FoU & Moms).md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -391,12 +349,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Systemet anv\u00e4nder webhooks f\u00f6r att bevaka",
-      "source": "Teknisk integrationsplan_ Automatisering av skatte\u00e5tervinning (FoU & Moms).md",
+      "notes": "Systemet använder webhooks för att bevaka",
+      "source": "Teknisk integrationsplan_ Automatisering av skatteåtervinning (FoU & Moms).md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -410,12 +366,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Varje datapunkt som h\u00e4mtas loggas med tidsst\u00e4mpel",
-      "source": "Teknisk integrationsplan_ Automatisering av skatte\u00e5tervinning (FoU & Moms).md",
+      "notes": "Varje datapunkt som hämtas loggas med tidsstämpel",
+      "source": "Teknisk integrationsplan_ Automatisering av skatteåtervinning (FoU & Moms).md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -429,9 +383,7 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Information i deklarationens olika",
       "source": "Strategisk rapport_ Optimering av FoU-avdrag och hantering av skatteprocessuella risker.md",
@@ -448,11 +400,9 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Det framst\u00e5r som n\u00e4rmast",
+      "notes": "Det framstår som närmast",
       "source": "Strategisk rapport_ Optimering av FoU-avdrag och hantering av skatteprocessuella risker.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
@@ -467,11 +417,9 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Om utredningsskyldigheten v\u00e4ckts anses",
+      "notes": "Om utredningsskyldigheten väckts anses",
       "source": "Strategisk rapport_ Optimering av FoU-avdrag och hantering av skatteprocessuella risker.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
@@ -479,16 +427,14 @@
     },
     {
       "id": "L4694",
-      "name": "Initiera en sex\u00e5rig \\\"Audit Review\\\":",
+      "name": "Initiera en sexårig \\\"Audit Review\\\":",
       "sni": "",
       "industry": "",
       "personnel_cost": "",
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Granska historiska",
       "source": "Strategisk rapport_ Optimering av FoU-avdrag och hantering av skatteprocessuella risker.md",
@@ -505,11 +451,9 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "S\u00e4kerst\u00e4ll att sambandet mellan bokf\u00f6rda utvecklingskostnader och",
+      "notes": "Säkerställ att sambandet mellan bokförda utvecklingskostnader och",
       "source": "Strategisk rapport_ Optimering av FoU-avdrag och hantering av skatteprocessuella risker.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
@@ -517,18 +461,16 @@
     },
     {
       "id": "L4168",
-      "name": "V\u00e4rdera processuella f\u00f6rdelar:",
+      "name": "Värdera processuella fördelar:",
       "sni": "",
       "industry": "",
       "personnel_cost": "",
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Se \u00f6ppet yrkande som en",
+      "notes": "Se öppet yrkande som en",
       "source": "Strategisk rapport_ Optimering av FoU-avdrag och hantering av skatteprocessuella risker.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
@@ -543,10 +485,7 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)",
-        "Lead matches tech SNI 62010 with FoU=0 (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\", \"Lead matches tech SNI 62010 with FoU=0 (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Matching Tech (62010/62020) or Manufacturing (10-33)",
       "source": "Technical Integration Plan_ Automated Swedish Tax Recovery Prospecting.md",
@@ -563,9 +502,7 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Disproportionate personnel cost growth relative to",
       "source": "Technical Integration Plan_ Automated Swedish Tax Recovery Prospecting.md",
@@ -582,9 +519,7 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "\\\"We identified that Company Name",
       "source": "Technical Integration Plan_ Automated Swedish Tax Recovery Prospecting.md",
@@ -601,9 +536,7 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Highlight the legal right to claim retroactive",
       "source": "Technical Integration Plan_ Automated Swedish Tax Recovery Prospecting.md",
@@ -620,9 +553,7 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Explicitly state the No-Cure-No-Pay",
       "source": "Technical Integration Plan_ Automated Swedish Tax Recovery Prospecting.md",
@@ -639,9 +570,7 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "A direct link to the Energirevision.com client",
       "source": "Technical Integration Plan_ Automated Swedish Tax Recovery Prospecting.md",
@@ -658,31 +587,27 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "S\u00f6k i",
-      "source": "Strategisk rapport_ Datadriven lead-generering och operativ checklista f\u00f6r Vision-AI.md",
+      "notes": "Sök i",
+      "source": "Strategisk rapport_ Datadriven lead-generering och operativ checklista för Vision-AI.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
     },
     {
       "id": "L3194",
-      "name": "Verifiering av nyhetsh\u00f6jd:",
+      "name": "Verifiering av nyhetshöjd:",
       "sni": "",
       "industry": "",
       "personnel_cost": "",
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Identifiera formuleringar som \\\"unika",
-      "source": "Strategisk rapport_ Datadriven lead-generering och operativ checklista f\u00f6r Vision-AI.md",
+      "source": "Strategisk rapport_ Datadriven lead-generering och operativ checklista för Vision-AI.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -696,31 +621,27 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Instruera AI:n att mappa",
-      "source": "Strategisk rapport_ Datadriven lead-generering och operativ checklista f\u00f6r Vision-AI.md",
+      "source": "Strategisk rapport_ Datadriven lead-generering och operativ checklista för Vision-AI.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
     },
     {
       "id": "L4142",
-      "name": "Analys av teknisk os\u00e4kerhet:",
+      "name": "Analys av teknisk osäkerhet:",
       "sni": "",
       "industry": "",
       "personnel_cost": "",
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Extrahera stycken som beskriver",
-      "source": "Strategisk rapport_ Datadriven lead-generering och operativ checklista f\u00f6r Vision-AI.md",
+      "source": "Strategisk rapport_ Datadriven lead-generering och operativ checklista för Vision-AI.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -734,12 +655,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Kontrollera data sex \u00e5r tillbaka f\u00f6r",
-      "source": "Strategisk rapport_ Datadriven lead-generering och operativ checklista f\u00f6r Vision-AI.md",
+      "notes": "Kontrollera data sex år tillbaka för",
+      "source": "Strategisk rapport_ Datadriven lead-generering och operativ checklista för Vision-AI.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -753,12 +672,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "2.5 - 5.0 MSEK",
       "notes": "Ett svenskt bolag inom Addtech-koncernen",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -772,12 +689,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.5 - 2.8 MSEK",
-      "notes": "Verksamt inom industriella l\u00f6sningar i Sverige 5.",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "notes": "Verksamt inom industriella lösningar i Sverige 5.",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -791,12 +706,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Baserat i Vislanda och",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -810,12 +723,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "En stor akt\u00f6r inom digital h\u00e4lsa 10. Trots",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "notes": "En stor aktör inom digital hälsa 10. Trots",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -829,12 +740,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Ett bolag som n\u00e4mns i relation till styrelseuppdrag",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "notes": "Ett bolag som nämns i relation till styrelseuppdrag",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -848,12 +757,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Revisionen sk\u00f6ts av Kent \u00c5kerlund (Addtechs",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "notes": "Revisionen sköts av Kent Åkerlund (Addtechs",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -867,31 +774,27 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "2.5 - 5.0 MSEK",
       "notes": "Koncernens operativa nav 20. Med 150",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
     },
     {
       "id": "L7924",
-      "name": "St\u00f6rre Bagerikedjor (ex. Gateau):",
+      "name": "Större Bagerikedjor (ex. Gateau):",
       "sni": "",
       "industry": "",
       "personnel_cost": "",
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Som \\\"blandad verksamhet\\\"",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -905,50 +808,44 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "St\u00f6rre butiker som styckar",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "notes": "Större butiker som styckar",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
     },
     {
       "id": "L2423",
-      "name": "Bostadsr\u00e4ttsf\u00f6reningar (BRF) med stora kommersiella lokaler:",
+      "name": "Bostadsrättsföreningar (BRF) med stora kommersiella lokaler:",
       "sni": "",
       "industry": "",
       "personnel_cost": "",
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "S\u00e4rskilt de i storstadsregioner som genomf\u00f6rt stora renoveringar",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "notes": "Särskilt de i storstadsregioner som genomfört stora renoveringar",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
     },
     {
       "id": "L4100",
-      "name": "Di\u00f6s Fastigheter AB:",
+      "name": "Diös Fastigheter AB:",
       "sni": "",
       "industry": "",
       "personnel_cost": "",
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "\u00c4ven h\u00e4r finns koppling via",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "notes": "Även här finns koppling via",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -962,12 +859,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "2.5 - 5.0 MSEK",
       "notes": "Med 150 dotterbolag och komplexa interna",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -981,12 +876,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
       "notes": "Som ett bolag med en massiv vagnpark finns stora",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -1000,12 +893,10 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "2.5 - 5.0 MSEK",
-      "notes": "Eftersom de har 40 % av oms\u00e4ttningen",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "notes": "Eftersom de har 40 % av omsättningen",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
@@ -1019,219 +910,217 @@
       "rd_deduction": "",
       "score": 9,
       "status": "Screening",
-      "tags": [
-        "No specialized tax advisor mentioned (+3)"
-      ],
+      "tags": "[\"No specialized tax advisor mentioned (+3)\"]",
       "potential": "1.0 - 1.8 MSEK",
-      "notes": "Ett bolag verksamt inom f\u00f6rnybar energi (ocks\u00e5 kopplat",
-      "source": "Strategisk lead-analys f\u00f6r skatte\u00e5tervinning och FoU-avdrag.md",
+      "notes": "Ett bolag verksamt inom förnybar energi (också kopplat",
+      "source": "Strategisk lead-analys för skatteåtervinning och FoU-avdrag.md",
       "created_at": "2026-03-02 13:17:19",
       "updated_at": "2026-03-02 13:18:38",
       "deleted_at": null
-    },
-    {
-      "id": "L5424",
-      "name": "Electrum Automation AB",
-      "sni": "",
-      "industry": "Tech/FoU",
-      "personnel_cost": "",
-      "rd_deduction": "",
-      "score": 7,
-      "status": "New",
-      "tags": [],
-      "potential": "Potential for 20% R&D personnel cost reduction retroactively 6 years.",
-      "notes": "Dotterbolag till Addtech som fokuserar p\u00e5 elektrifiering och teknisk innovation. Risken \u00e4r h\u00f6g att de inte maximerar avdraget f\u00f6r sin tekniska utveckling.",
-      "source": "engine",
-      "created_at": "2026-03-05 10:56:46",
-      "updated_at": "2026-03-05 10:56:46",
-      "deleted_at": null
-    },
-    {
-      "id": "L4757",
-      "name": "Crescocito AB",
-      "sni": "",
-      "industry": "Tech/FoU",
-      "personnel_cost": "",
-      "rd_deduction": "",
-      "score": 7,
-      "status": "New",
-      "tags": [],
-      "potential": "Potential for 20% R&D personnel cost reduction retroactively 6 years.",
-      "notes": "Verksamt inom industriella automationsl\u00f6sningar. Ett utpr\u00e4glat teknikbolag som b\u00f6r genomg\u00e5 en FoU-audit.",
-      "source": "engine",
-      "created_at": "2026-03-05 10:56:46",
-      "updated_at": "2026-03-05 10:56:46",
-      "deleted_at": null
-    },
-    {
-      "id": "L4277",
-      "name": "Kry International AB",
-      "sni": "",
-      "industry": "Tech/FoU",
-      "personnel_cost": "",
-      "rd_deduction": "",
-      "score": 7,
-      "status": "New",
-      "tags": [],
-      "potential": "Potential for 20% R&D personnel cost reduction retroactively 6 years.",
-      "notes": "En massiv tech-organisation inom h\u00e4lsa. Ofta har dessa bolag s\u00e5 komplexa projektbeskrivningar att Skatteverket nekat dem avdrag p\u00e5 felaktiga grunder, vilket \u00f6ppnar f\u00f6r ompr\u00f6vning.",
-      "source": "engine",
-      "created_at": "2026-03-05 10:56:46",
-      "updated_at": "2026-03-05 10:56:46",
-      "deleted_at": null
-    },
-    {
-      "id": "L1734",
-      "name": "Sleip AI",
-      "sni": "",
-      "industry": "Tech/FoU",
-      "personnel_cost": "",
-      "rd_deduction": "",
-      "score": 7,
-      "status": "New",
-      "tags": [],
-      "potential": "Potential for 20% R&D personnel cost reduction retroactively 6 years.",
-      "notes": "Utvecklar avancerade AI-plattformar. Trots att FoU-potentialen \u00e4r uppenbar (\"stenh\u00e5rt bevis\") redovisas det s\u00e4llan explicit i noterna, vilket g\u00f6r det till en perfekt lead.",
-      "source": "engine",
-      "created_at": "2026-03-05 10:56:46",
-      "updated_at": "2026-03-05 10:56:46",
-      "deleted_at": null
-    },
-    {
-      "id": "L9333",
-      "name": "Bolag med industriella processer men som ofta felaktigt klassas som retail eller service.\nSkiStar AB",
-      "sni": "",
-      "industry": "Tech/FoU",
-      "personnel_cost": "",
-      "rd_deduction": "",
-      "score": 7,
-      "status": "New",
-      "tags": [],
-      "potential": "Potential for 20% R&D personnel cost reduction retroactively 6 years.",
-      "notes": "Revisionen sk\u00f6ts av Kent \u00c5kerlund (Addtechs revisor). Skidanl\u00e4ggningar som tillverkar sn\u00f6 via sn\u00f6kanoner har r\u00e4tt till den reducerade skattesatsen p\u00e5 0,6 \u00f6re/kWh retroaktivt 3 \u00e5r bak\u00e5t.",
-      "source": "engine",
-      "created_at": "2026-03-05 10:56:46",
-      "updated_at": "2026-03-05 10:56:46",
-      "deleted_at": null
-    },
-    {
-      "id": "L3839",
-      "name": "Addtech Nordic AB",
-      "sni": "",
-      "industry": "Tech/FoU",
-      "personnel_cost": "",
-      "rd_deduction": "",
-      "score": 7,
-      "status": "New",
-      "tags": [],
-      "potential": "Potential for 20% R&D personnel cost reduction retroactively 6 years.",
-      "notes": "Koncernens nav. Med 150 bolag finns det garanterat enheter med blandad verksamhet (lager/montering) som betalar full energiskatt i on\u00f6dan.",
-      "source": "engine",
-      "created_at": "2026-03-05 10:56:46",
-      "updated_at": "2026-03-05 10:56:46",
-      "deleted_at": null
-    },
-    {
-      "id": "L2286",
-      "name": "Di\u00f6s Fastigheter AB",
-      "sni": "",
-      "industry": "Industri/Energi",
-      "personnel_cost": "",
-      "rd_deduction": "",
-      "score": 6,
-      "status": "New",
-      "tags": [],
-      "potential": "Reduction to 0.6 \u00f6re/kWh based on HFD 2022 ref. 38.",
-      "notes": "\u00c4ven h\u00e4r finns koppling via revisionsn\u00e4tverket. Fastighetsbolag med blandad uthyrning (bost\u00e4der/lokaler) kan f\u00e5 miljonbelopp tillbaka genom att byta fr\u00e5n yta till oms\u00e4ttning som f\u00f6rdelningsnyckel.",
-      "source": "engine",
-      "created_at": "2026-03-05 10:56:46",
-      "updated_at": "2026-03-05 10:56:46",
-      "deleted_at": null
-    },
-    {
-      "id": "L3803",
-      "name": "Volvo Group",
-      "sni": "",
-      "industry": "General",
-      "personnel_cost": "",
-      "rd_deduction": "",
-      "score": 5,
-      "status": "New",
-      "tags": [],
-      "potential": "Unknown",
-      "notes": "Som ett bolag med en massiv vagnpark finns stora m\u00f6jligheter att korrigera utg\u00e5ende moms p\u00e5 \"\u00f6verv\u00e4rdet\" vid avslutade leasingavtal.",
-      "source": "engine",
-      "created_at": "2026-03-05 10:56:46",
-      "updated_at": "2026-03-05 10:56:46",
-      "deleted_at": null
-    },
-    {
-      "id": "L9906",
-      "name": "OX2 AB",
-      "sni": "",
-      "industry": "Tech/FoU",
-      "personnel_cost": "",
-      "rd_deduction": "",
-      "score": 7,
-      "status": "New",
-      "tags": [],
-      "potential": "Reduction to 0.6 \u00f6re/kWh based on HFD 2022 ref. 38.",
-      "notes": "Stora infrastrukturinvesteringar inom energi inneb\u00e4r ofta komplexa momsfr\u00e5gor d\u00e4r retroaktiva r\u00e4ttelser kan ge betydande belopp.",
-      "source": "engine",
-      "created_at": "2026-03-05 10:56:46",
-      "updated_at": "2026-03-05 10:56:46",
-      "deleted_at": null
-    },
-    {
-      "id": "L4554",
-      "name": "SkiStar AB",
-      "sni": "",
-      "industry": "General",
-      "personnel_cost": "",
-      "rd_deduction": "",
-      "score": 5,
-      "status": "New",
-      "tags": [],
-      "potential": "Reduction to 0.6 \u00f6re/kWh based on HFD 2022 ref. 38.",
-      "notes": "En spearhead-kund f\u00f6r sn\u00f6tillverkning via sn\u00f6kanoner, vilket enligt HFD 2022 ref. 38 ber\u00e4ttigar till den l\u00e4gre skattesatsen p\u00e5 0,6 \u00f6re/kWh.",
-      "source": "engine",
-      "created_at": "2026-03-05 10:56:46",
-      "updated_at": "2026-03-05 10:56:46",
-      "deleted_at": null
-    },
-    {
-      "id": "L1625",
-      "name": "Genom att byta till oms\u00e4ttningsmetoden kan de \u00e5tervinna miljonbelopp.\nDi\u00f6s Fastigheter AB",
-      "sni": "",
-      "industry": "Tech/FoU",
-      "personnel_cost": "",
-      "rd_deduction": "",
-      "score": 7,
-      "status": "New",
-      "tags": [],
-      "potential": "Potential for 20% R&D personnel cost reduction retroactively 6 years.",
-      "notes": "Har en stor portf\u00f6lj av blandad uthyrning och \u00e4r kopplade till samma revisionsn\u00e4tverk som Addtech.",
-      "source": "engine",
-      "created_at": "2026-03-05 10:56:46",
-      "updated_at": "2026-03-05 10:56:46",
-      "deleted_at": null
-    },
-    {
-      "id": "L2628",
-      "name": "Internationell Skatt\nVolvo Group",
-      "sni": "",
-      "industry": "Industri/Energi",
-      "personnel_cost": "",
-      "rd_deduction": "",
-      "score": 6,
-      "status": "New",
-      "tags": [],
-      "potential": "Reduction to 0.6 \u00f6re/kWh based on HFD 2022 ref. 38.",
-      "notes": "Som ett bolag med en massiv vagnpark finns stora m\u00f6jligheter att korrigera utg\u00e5ende moms p\u00e5 \u00f6verv\u00e4rdet vid avslutade leasingavtal.",
-      "source": "engine",
-      "created_at": "2026-03-05 10:56:46",
-      "updated_at": "2026-03-05 10:56:46",
-      "deleted_at": null
     }
-  ]
+  ],
+  "activity": {
+    "entries": [
+      {
+        "id": 18,
+        "timestamp": "2026-03-02 13:18:38",
+        "level": "SUCCESS",
+        "message": "Engine sync completed: 54 processed, 0 added, 54 updated. Duration: 14ms.",
+        "source": "engine"
+      },
+      {
+        "id": 17,
+        "timestamp": "2026-03-02 13:18:20",
+        "level": "SUCCESS",
+        "message": "Static data.json exported and pushed to GitHub.",
+        "source": "system"
+      },
+      {
+        "id": 16,
+        "timestamp": "2026-03-02 13:18:19",
+        "level": "SUCCESS",
+        "message": "Engine sync completed: 54 processed, 0 added, 54 updated. Duration: 13ms.",
+        "source": "engine"
+      },
+      {
+        "id": 15,
+        "timestamp": "2026-03-02 13:17:20",
+        "level": "SUCCESS",
+        "message": "Static data.json exported and pushed to GitHub.",
+        "source": "system"
+      },
+      {
+        "id": 14,
+        "timestamp": "2026-03-02 13:17:19",
+        "level": "SUCCESS",
+        "message": "Engine sync completed: 54 processed, 47 added, 7 updated. Duration: 15ms.",
+        "source": "engine"
+      },
+      {
+        "id": 13,
+        "timestamp": "2026-03-02 13:16:26",
+        "level": "SUCCESS",
+        "message": "Static data.json exported and pushed to GitHub.",
+        "source": "system"
+      },
+      {
+        "id": 12,
+        "timestamp": "2026-03-02 13:16:24",
+        "level": "SUCCESS",
+        "message": "Engine sync completed: 7 processed, 0 added, 7 updated. Duration: 12ms.",
+        "source": "engine"
+      },
+      {
+        "id": 11,
+        "timestamp": "2026-02-27 13:20:19",
+        "level": "SUCCESS",
+        "message": "Static data.json exported and pushed to GitHub.",
+        "source": "system"
+      },
+      {
+        "id": 10,
+        "timestamp": "2026-02-27 13:20:18",
+        "level": "SUCCESS",
+        "message": "Engine sync completed: 7 processed, 7 added, 0 updated. Duration: 6ms.",
+        "source": "engine"
+      },
+      {
+        "id": 9,
+        "timestamp": "2026-02-27 13:17:57",
+        "level": "SUCCESS",
+        "message": "Static data.json exported and pushed to GitHub.",
+        "source": "system"
+      },
+      {
+        "id": 8,
+        "timestamp": "2026-02-27 13:17:56",
+        "level": "SUCCESS",
+        "message": "Engine sync completed: 7 processed, 7 added, 0 updated. Duration: 5ms.",
+        "source": "engine"
+      },
+      {
+        "id": 7,
+        "timestamp": "2026-02-27 07:30:21",
+        "level": "SUCCESS",
+        "message": "Static data.json exported and pushed to GitHub.",
+        "source": "system"
+      },
+      {
+        "id": 6,
+        "timestamp": "2026-02-27 07:30:20",
+        "level": "SUCCESS",
+        "message": "Engine sync completed: 7 processed, 7 added, 0 updated. Duration: 6ms.",
+        "source": "engine"
+      },
+      {
+        "id": 5,
+        "timestamp": "2026-02-27 06:19:30",
+        "level": "INFO",
+        "message": "API server started on port 3001.",
+        "source": "system"
+      },
+      {
+        "id": 4,
+        "timestamp": "2026-02-27 06:18:40",
+        "level": "INFO",
+        "message": "API server started on port 3001.",
+        "source": "system"
+      },
+      {
+        "id": 3,
+        "timestamp": "2026-02-27 06:18:36",
+        "level": "SUCCESS",
+        "message": "Engine sync completed: 7 processed, 7 added, 0 updated. Duration: 9ms.",
+        "source": "engine"
+      },
+      {
+        "id": 2,
+        "timestamp": "2026-02-27 06:18:21",
+        "level": "INFO",
+        "message": "OpenRevision system initialized — ready for engine sync.",
+        "source": "system"
+      },
+      {
+        "id": 1,
+        "timestamp": "2026-02-27 06:18:21",
+        "level": "SUCCESS",
+        "message": "Database seeded with baseline data from research exports.",
+        "source": "system"
+      }
+    ]
+  },
+  "engine_runs": [],
+  "hfd_rulings": {
+    "rulings": [
+      {
+        "id": "HFD-2022-38",
+        "title": "HFD 2022 ref. 38 (Energiskatt)",
+        "desc": "Kravet på \"huvudsaklig\" industriell verksamhet raderat. Bagerier och livsmedelsbutiker med tillverkning kan nu få retroaktiv nedsättning.",
+        "tag": "Prejudikat"
+      },
+      {
+        "id": "HFD-2024-52",
+        "title": "HFD 2024 ref. 52 (Skattetillägg / Sanktioner)",
+        "desc": "Möjliggör undanröjande av skattetillägg om felet varit \"uppenbart\" eller lätt att identifiera för Skatteverket.",
+        "tag": "Ny Praxis"
+      },
+      {
+        "id": "HFD-7071-24",
+        "title": "HFD 7071-24 (Moms för BRF)",
+        "desc": "Bostadsrättsföreningar med höga kommersiella lokalhyror kan använda omsättningsmetoden retroaktivt istället för ytmetoden.",
+        "tag": "Praxis"
+      }
+    ]
+  },
+  "agents": {
+    "agents": [
+      {
+        "id": "sanktion",
+        "name": "Sanktionsexperten",
+        "emoji": "🛡️⚖️",
+        "focus": "Undanröja skattetillägg (HFD 2024 ref. 52)",
+        "color": "text-slate-500",
+        "bg": "bg-slate-100"
+      },
+      {
+        "id": "fastighet",
+        "name": "Fastighetsmomsaren",
+        "emoji": "🏢💰",
+        "focus": "Momsåtervinning för BRF:er via omsättningsmetoden",
+        "color": "text-amber-500",
+        "bg": "bg-amber-100"
+      },
+      {
+        "id": "leasing",
+        "name": "Leasing-Auditören",
+        "emoji": "🚗🔍",
+        "focus": "Momsfel vid finansiell leasing och vagnparker",
+        "color": "text-cyan-500",
+        "bg": "bg-cyan-100"
+      },
+      {
+        "id": "energi",
+        "name": "Energirevision-Spearhead",
+        "emoji": "⚡🏭",
+        "focus": "Återkrav av energiskatt (HFD 2022 ref. 38)",
+        "color": "text-emerald-500",
+        "bg": "bg-emerald-100"
+      },
+      {
+        "id": "fou_bevis",
+        "name": "FoU-Bevis-Agent",
+        "emoji": "🔬📝",
+        "focus": "Säkrar bevisbörda via CTO-intervjuer",
+        "color": "text-blue-500",
+        "bg": "bg-blue-100"
+      }
+    ]
+  },
+  "stats": {
+    "totalLeads": 54,
+    "topScoreLeads": 52,
+    "totalFiles": 0,
+    "totalPotentialMSEK": 83.7,
+    "lastEngineRun": null
+  }
 }

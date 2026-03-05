@@ -1,0 +1,63 @@
+{
+  "report_generated": true,
+  "timestamp": 1771971762,
+  "patch_status": [
+    {
+      "id": "T-011",
+      "name": "EnergiRevision BRIDGE_URLS centralisering (Tailnet)",
+      "status": "pending",
+      "paths": [
+        "EnergiRevision/app/api/bridge/score/route.ts",
+        "EnergiRevision/app/api/bridge/memory/search/route.ts"
+      ]
+    },
+    {
+      "id": "T-012",
+      "name": "energirevision_integration/bridge_client.ts centralisering",
+      "status": "pending",
+      "paths": [
+        "AGENTZERO-imac/workdir/energirevision_integration/bridge_client.ts"
+      ]
+    },
+    {
+      "id": "T-013",
+      "name": "Vision PDF upgrade (TableRow / ExtractionResult)",
+      "status": "pending",
+      "paths": [
+        "AGENTZERO-imac/workdir/vision_pdf.py"
+      ]
+    },
+    {
+      "id": "T-014",
+      "name": "Event-driven dashboard producer",
+      "status": "pending",
+      "paths": [
+        "AGENTZERO-imac/workdir/orchestrator_tailnet_events.py"
+      ]
+    },
+    {
+      "id": "T-015",
+      "name": "Dashboard SSE endpoint",
+      "status": "pending",
+      "paths": [
+        "AGENTZERO-imac/workdir/dashboard_server/main.py"
+      ]
+    },
+    {
+      "id": "T-016",
+      "name": "CI tailnet tests",
+      "status": "pending",
+      "paths": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
+      "id": "T-017",
+      "name": "Dokumentation tailnet",
+      "status": "pending",
+      "paths": [
+        "AGENTZERO-imac/workdir/TASKLIST.md"
+      ]
+    }
+  ]
+}

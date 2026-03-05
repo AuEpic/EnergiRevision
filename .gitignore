@@ -7,6 +7,7 @@ __pycache__/
 *.pyc
 .DS_Store
 .env
+.env.local
 *.log
 AGENTZERO-imac/
 A Volumes/

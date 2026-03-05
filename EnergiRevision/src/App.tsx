@@ -351,13 +351,23 @@ function AgentsView({ agents }: { agents: Agent[] }) {
               </div>
               <h3 className="text-lg font-semibold text-slate-900">{agent.name}</h3>
               <p className="text-sm text-slate-500 mt-1 mb-4 h-10">{agent.focus}</p>
-              <div className="space-y-2 border-t border-slate-100 pt-4">
-                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Kärnkompetens</div>
-                <ul className="text-sm text-slate-700 space-y-2">
-                  <li className="flex items-center gap-2"><ShieldCheck size={14} className="text-emerald-500" />Automatiserad API-verifiering</li>
-                  <li className="flex items-center gap-2"><ShieldCheck size={14} className="text-emerald-500" />HFD Prejudikat-analys</li>
-                  <li className="flex items-center gap-2"><ShieldCheck size={14} className="text-emerald-500" />No-Cure-No-Pay Outreach</li>
-                </ul>
+              <div className="space-y-4 border-t border-slate-100 pt-4">
+                <div>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Kärnkompetens</div>
+                  <ul className="text-sm text-slate-700 space-y-2">
+                    <li className="flex items-center gap-2"><ShieldCheck size={14} className="text-emerald-500" />Automatiserad API-verifiering</li>
+                    <li className="flex items-center gap-2"><ShieldCheck size={14} className="text-emerald-500" />HFD Prejudikat-analys</li>
+                    <li className="flex items-center gap-2"><ShieldCheck size={14} className="text-emerald-500" />No-Cure-No-Pay Outreach</li>
+                  </ul>
+                </div>
+                <div>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Verktyg & Skills</div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {['Search', 'Shell', 'File-IO', 'Browser'].map(tool => (
+                      <span key={tool} className="px-2 py-0.5 rounded-md bg-slate-100 text-[10px] font-bold text-slate-600 uppercase tracking-tighter border border-slate-200">{tool}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
               <button className="mt-6 w-full py-2 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-lg transition-colors uppercase tracking-wider">Starta Agent</button>
             </div>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.openrevision.sync</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/imacpro/Documents/DEV-imac/sync_to_db.py</string>
+        <string>--db</string>
+        <string>/Users/imacpro/Documents/DEV-imac/EnergiRevision/data/openrevision.db</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/imacpro/Documents/DEV-imac</string>
+
+    <!-- Run daily at 06:00 -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>6</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <!-- Also run when these files change -->
+    <key>WatchPaths</key>
+    <array>
+        <string>/Users/imacpro/Documents/DEV-imac/rules_engine.py</string>
+        <string>/Users/imacpro/Documents/DEV-imac/lead_scoring.py</string>
+        <string>/Users/imacpro/Documents/DEV-imac/MASTER_LEADS_LIST.md</string>
+    </array>
+
+    <key>StandardOutPath</key>
+    <string>/Users/imacpro/Documents/DEV-imac/EnergiRevision/data/sync.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/imacpro/Documents/DEV-imac/EnergiRevision/data/sync_error.log</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
